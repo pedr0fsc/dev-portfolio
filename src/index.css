@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* Prevent white overscroll/rubber-banding gaps */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem; /* Offset for the sticky topbar height when scrolling to anchors */
+}
+
+html, body {
+  background-color: #0f172a; /* Slate-900 matching Navbar & Footer */
+  overscroll-behavior-y: none;
+  margin: 0;
+  padding: 0;
+}
