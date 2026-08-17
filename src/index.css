@@ -3,12 +3,83 @@
 /* Prevent white overscroll/rubber-banding gaps */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4rem; /* Offset for the sticky topbar height when scrolling to anchors */
+  scroll-padding-top: 4.5rem; /* Offset for the sticky navbar height when jumping to anchors */
+  overscroll-behavior-y: none;
 }
 
-html, body {
-  background-color: #0f172a; /* Slate-900 matching Navbar & Footer */
-  overscroll-behavior-y: none;
+/* Theme variables */
+:root {
+  --bg-app: #f8fafc;
+  --bg-navbar: rgba(255, 255, 255, 0.8);
+  --border-navbar: #e2e8f0;
+  --text-navbar: #1e293b;
+  
+  --bg-hero: #f8fafc;
+  --text-hero: #334155;
+  --text-hero-title: #0f172a;
+  
+  --bg-projects: #f1f5f9;
+  --text-projects: #334155;
+  --text-projects-title: #0f172a;
+  
+  --bg-card: #ffffff;
+  --border-card: rgba(226, 232, 240, 0.8);
+  
+  --bg-footer: #ffffff;
+  --border-footer: #e2e8f0;
+  --text-footer: #64748b;
+  --text-footer-title: #0f172a;
+}
+
+.dark {
+  --bg-app: #020617;
+  --bg-navbar: rgba(15, 23, 42, 0.8);
+  --border-navbar: #1e293b;
+  --text-navbar: #f8fafc;
+  
+  --bg-hero: #0f172a;
+  --text-hero: #cbd5e1;
+  --text-hero-title: #ffffff;
+  
+  --bg-projects: #1e293b;
+  --text-projects: #f8fafc;
+  --text-projects-title: #ffffff;
+  
+  --bg-card: #0f172a;
+  --border-card: #1e293b;
+  
+  --bg-footer: #0f172a;
+  --border-footer: #1e293b;
+  --text-footer: #94a3b8;
+  --text-footer-title: #ffffff;
+}
+
+body {
   margin: 0;
   padding: 0;
+  overflow-x: clip; /* clip horizontal overflow without creating a new scroll container */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+
+/* View Transition API - Circular reveal theme switch configuration */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Custom layer ordering to allow dynamic reveal clipping */
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+.dark::view-transition-old(root) {
+  z-index: 9999;
+}
+.dark::view-transition-new(root) {
+  z-index: 1;
 }

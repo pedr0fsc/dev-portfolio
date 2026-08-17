@@ -3,15 +3,19 @@ import { HeroCard } from "./components/HeroCard";
 import { ProjectGrid } from "./components/ProjectGrid";
 import { WaveDivider } from "./components/WaveDivider";
 import { Footer } from "./components/Footer";
+import { useApp } from "./context/AppContext";
 
 export default function App() {
+  const { theme } = useApp();
+  
   return (
-    <div className="min-h-screen flex flex-col bg-slate-900 font-sans overflow-x-hidden">
+    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-300 bg-[var(--bg-app)]`}>
       <Navbar />
       <HeroCard />
-      <WaveDivider color="#f1f5f9" bgColor="#0f172a" flip={true} />
+      <WaveDivider color="var(--bg-projects)" bgColor="var(--bg-hero)" flip={true} />
       <ProjectGrid />
-      <WaveDivider color="#0f172a" bgColor="#f1f5f9" flip={true} />
+      {/* Added mb-[-2.5px] and relative positioning to prevent 1px sub-pixel rendering gaps at the footer boundary */}
+      <WaveDivider color="var(--bg-footer)" bgColor="var(--bg-projects)" flip={true} className="mb-[-2.5px] relative z-10" />
       <Footer />
     </div>
   );

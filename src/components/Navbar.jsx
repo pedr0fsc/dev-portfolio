@@ -1,9 +1,27 @@
-import { useState } from "react";
-import { Menu, X, Code2 } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Menu, X, Settings, Sun, Moon } from "lucide-react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { useApp } from "../context/AppContext";
+import content from "../data/content.json";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const { theme, toggleTheme, lang, changeLanguage } = useApp();
+  const settingsRef = useRef(null);
+  const isDark = theme === "dark";
+  const copy = content.navbar[lang];
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (settingsRef.current && !settingsRef.current.contains(event.target)) {
+        setIsSettingsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const socialLinks = [
     { href: "https://github.com/pedr0fsc", icon: FaGithub, label: "GitHub" },
@@ -12,22 +30,28 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 text-white shadow-md">
+    <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b shadow-sm transition-colors duration-300 ${
+      isDark 
+        ? "bg-slate-900/80 border-slate-800 text-white shadow-md" 
+        : "bg-white/80 border-slate-200 text-slate-800"
+    }`}>
       <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
         {/* Brand */}
         <div className="flex items-center space-x-2 font-bold text-lg">
-          <Code2 className="text-blue-400" />
-          <span>pedr0fsc</span>
+          <span className={isDark ? "text-blue-400" : "text-blue-600"}>&lt;</span>
+          <span className={isDark ? "text-white" : "text-slate-800"}>pedr0fsc</span>
+          <span className={isDark ? "text-blue-400" : "text-blue-600"}>/&gt;</span>
         </div>
 
-        {/* Desktop Links & Socials */}
+        {/* Desktop Links, Socials & Config */}
         <div className="hidden md:flex items-center space-x-6">
-          <a href="#hero" className="hover:text-blue-400 transition">About</a>
-          <a href="#projects" className="hover:text-blue-400 transition">Projects</a>
-          <a href="#contact" className="hover:text-blue-400 transition">Contact</a>
+          <a href="#hero" className={`transition font-medium text-sm ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`}>{copy.about}</a>
+          <a href="#projects" className={`transition font-medium text-sm ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`}>{copy.projects}</a>
+          <a href="#contact" className={`transition font-medium text-sm ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`}>{copy.contact}</a>
           
-          <div className="h-4 w-px bg-slate-700 mx-2" />
+          <div className={`h-4 w-px mx-2 ${isDark ? "bg-slate-700" : "bg-slate-200"}`} />
 
+          {/* Socials */}
           <div className="flex items-center space-x-4">
             {socialLinks.map(({ href, icon: Icon, label }) => (
               <a
@@ -36,43 +60,161 @@ export function Navbar() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={label}
-                className="text-slate-400 hover:text-blue-400 transition"
+                className={`transition ${isDark ? "text-slate-400 hover:text-blue-400" : "text-slate-400 hover:text-blue-600"}`}
               >
                 <Icon size={18} />
               </a>
             ))}
           </div>
+
+          <div className={`h-4 w-px mx-2 ${isDark ? "bg-slate-700" : "bg-slate-200"}`} />
+
+          {/* Config Menu Dropdown for Desktop */}
+          <div className="relative" ref={settingsRef}>
+            <button
+              onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+              className={`transition p-1 rounded-md ${isDark ? "text-slate-400 hover:text-blue-400" : "text-slate-400 hover:text-blue-600"}`}
+              aria-label="Settings"
+            >
+              <Settings size={18} className={`${isSettingsOpen ? 'rotate-45' : ''} transition-transform duration-300`} />
+            </button>
+
+            {isSettingsOpen && (
+              <div className={`absolute right-0 mt-2 w-36 border rounded-lg shadow-xl p-2.5 flex flex-col gap-2 ${
+                isDark 
+                  ? "bg-slate-900 border-slate-800 text-white" 
+                  : "bg-white border-slate-200 text-slate-800"
+              }`}>
+                {/* Theme selection row */}
+                <div className={`flex items-center justify-between border-b pb-2 ${isDark ? "border-slate-800" : "border-slate-100"}`}>
+                  <span className={`text-xs font-semibold ${isDark ? "text-slate-400" : "text-slate-500"}`}>{lang === "pt" ? "Tema" : "Theme"}</span>
+                  <button
+                    onClick={toggleTheme}
+                    className={`p-1 rounded transition ${isDark ? "hover:bg-slate-800 text-blue-400" : "hover:bg-slate-100 text-blue-600"}`}
+                  >
+                    {isDark ? <Moon size={14} /> : <Sun size={14} />}
+                  </button>
+                </div>
+                {/* Language selection row */}
+                <div className="flex items-center justify-between pt-1">
+                  <span className={`text-xs font-semibold ${isDark ? "text-slate-400" : "text-slate-500"}`}>{lang === "pt" ? "Idioma" : "Lang"}</span>
+                  <div className={`flex p-0.5 rounded ${isDark ? "bg-slate-800" : "bg-slate-100"}`}>
+                    <button
+                      onClick={() => changeLanguage("en")}
+                      className={`text-[10px] px-1.5 py-0.5 rounded font-bold transition ${
+                        lang === "en" 
+                          ? "bg-blue-600 text-white" 
+                          : isDark ? "text-slate-400" : "text-slate-500"
+                      }`}
+                    >
+                      EN
+                    </button>
+                    <button
+                      onClick={() => changeLanguage("pt")}
+                      className={`text-[10px] px-1.5 py-0.5 rounded font-bold transition ${
+                        lang === "pt" 
+                          ? "bg-blue-600 text-white" 
+                          : isDark ? "text-slate-400" : "text-slate-500"
+                      }`}
+                    >
+                      PT
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden text-slate-300 hover:text-white" onClick={() => setIsOpen(!isOpen)}>
+        <button 
+          className={`md:hidden hover:text-slate-800 transition ${isDark ? "text-slate-300 hover:text-white" : "text-slate-600"}`} 
+          onClick={() => setIsOpen(!isOpen)}
+        >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-slate-900/95 backdrop-blur-md px-4 pt-3 pb-4 space-y-3 border-t border-slate-800">
-          <a href="#hero" className="block text-slate-300 hover:text-blue-400" onClick={() => setIsOpen(false)}>About</a>
-          <a href="#projects" className="block text-slate-300 hover:text-blue-400" onClick={() => setIsOpen(false)}>Projects</a>
-          <a href="#contact" className="block text-slate-300 hover:text-blue-400" onClick={() => setIsOpen(false)}>Contact</a>
-          
-          <div className="flex space-x-5 pt-2 border-t border-slate-700/60">
-            {socialLinks.map(({ href, icon: Icon, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={label}
-                className="text-slate-400 hover:text-blue-400 transition"
-              >
-                <Icon size={20} />
-              </a>
-            ))}
+      {/* Mobile Menu — always mounted, animated via max-height + opacity */}
+      <div
+        className={`md:hidden border-t px-4 space-y-4 backdrop-blur-md overflow-hidden transition-all duration-300 ease-in-out ${
+          isOpen ? "max-h-96 pt-3 pb-5 opacity-100" : "max-h-0 pt-0 pb-0 opacity-0 pointer-events-none"
+        } ${
+          isDark
+            ? "bg-slate-900/95 border-slate-800"
+            : "bg-white/95 border-slate-200"
+        }`}
+      >
+          <div className="space-y-3">
+            <a href="#hero" className={`block font-medium ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`} onClick={() => setIsOpen(false)}>{copy.about}</a>
+            <a href="#projects" className={`block font-medium ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`} onClick={() => setIsOpen(false)}>{copy.projects}</a>
+            <a href="#contact" className={`block font-medium ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`} onClick={() => setIsOpen(false)}>{copy.contact}</a>
           </div>
-        </div>
-      )}
+          
+          <div className={`flex justify-between items-center pt-3 border-t ${isDark ? "border-slate-800" : "border-slate-200"}`}>
+            {/* Social Links on mobile */}
+            <div className="flex space-x-5">
+              {socialLinks.map(({ href, icon: Icon, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className={`transition ${isDark ? "text-slate-400 hover:text-blue-400" : "text-slate-400 hover:text-blue-600"}`}
+                >
+                  <Icon size={20} />
+                </a>
+              ))}
+            </div>
+
+            {/* Merged Theme & Language Config for Mobile */}
+            <div className={`flex items-center space-x-3 p-1 rounded-lg border ${
+              isDark 
+                ? "bg-slate-950 border-slate-800" 
+                : "bg-slate-50 border-slate-200"
+            }`}>
+              {/* Language Switch */}
+              <div className={`flex p-0.5 rounded ${isDark ? "bg-slate-900" : "bg-slate-200/50"}`}>
+                <button
+                  onClick={() => changeLanguage("en")}
+                  className={`text-[10px] px-2 py-0.5 rounded font-bold transition ${
+                    lang === "en" 
+                      ? "bg-blue-600 text-white" 
+                      : isDark ? "text-slate-400" : "text-slate-500"
+                  }`}
+                >
+                  EN
+                </button>
+                <button
+                  onClick={() => changeLanguage("pt")}
+                  className={`text-[10px] px-2 py-0.5 rounded font-bold transition ${
+                    lang === "pt" 
+                      ? "bg-blue-600 text-white" 
+                      : isDark ? "text-slate-400" : "text-slate-500"
+                  }`}
+                >
+                  PT
+                </button>
+              </div>
+
+              <div className={`w-px h-4 ${isDark ? "bg-slate-800" : "bg-slate-200"}`} />
+
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className={`p-1 rounded transition ${
+                  isDark 
+                    ? "text-blue-400 hover:bg-slate-900" 
+                    : "text-blue-600 hover:bg-slate-100"
+                }`}
+                aria-label="Toggle Theme"
+              >
+                {isDark ? <Moon size={16} /> : <Sun size={16} />}
+              </button>
+            </div>
+          </div>
+      </div>
     </nav>
   );
 }

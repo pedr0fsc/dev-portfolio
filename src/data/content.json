@@ -1,0 +1,93 @@
+{
+  "navbar": {
+    "en": {
+      "about": "About",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "pt": {
+      "about": "Sobre",
+      "projects": "Projetos",
+      "contact": "Contato"
+    }
+  },
+  "hero": {
+    "en": {
+      "student": "Computer Science Student",
+      "role": "Backend Developer & Electronic Designer",
+      "bio": "Building intuitive applications and exploring modern platforms. Focused on accessible design and clean code architectures."
+    },
+    "pt": {
+      "student": "Estudante de Ciência da Computação",
+      "role": "Desenvolvedor Backend & Projetista Eletrônico",
+      "bio": "Construindo aplicações intuitivas e explorando plataformas modernas. Focado em design acessível e arquiteturas de código limpo."
+    },
+    "skills": [
+      { "name": "Swift", "color": "bg-orange-500/10 text-orange-700 border-orange-200 dark:bg-orange-500/15 dark:text-orange-400 dark:border-orange-500/30" },
+      { "name": "SwiftUI", "color": "bg-blue-500/10 text-blue-700 border-blue-200 dark:bg-blue-500/15 dark:text-blue-400 dark:border-blue-500/30" },
+      { "name": "Xcode", "color": "bg-sky-500/10 text-sky-700 border-sky-200 dark:bg-sky-500/15 dark:text-sky-400 dark:border-sky-500/30" },
+      { "name": "UIKit", "color": "bg-indigo-500/10 text-indigo-700 border-indigo-200 dark:bg-indigo-500/15 dark:text-indigo-400 dark:border-indigo-500/30" },
+      { "name": "CoreData", "color": "bg-purple-500/10 text-purple-700 border-purple-200 dark:bg-purple-500/15 dark:text-purple-400 dark:border-purple-500/30" },
+      { "name": "Git", "color": "bg-red-500/10 text-red-700 border-red-200 dark:bg-red-500/15 dark:text-red-400 dark:border-red-500/30" },
+      { "name": "React", "color": "bg-cyan-500/10 text-cyan-700 border-cyan-200 dark:bg-cyan-500/15 dark:text-cyan-400 dark:border-cyan-500/30" }
+    ]
+  },
+  "projectsSection": {
+    "en": {
+      "title": "Academy Projects",
+      "viewOnGithub": "View on GitHub"
+    },
+    "pt": {
+      "title": "Projetos da Academy",
+      "viewOnGithub": "Ver no GitHub"
+    },
+    "list": [
+      {
+        "tech": "SwiftUI, CoreData",
+        "link": "https://github.com/pedr0fsc/ecotracker-ios",
+        "en": {
+          "title": "EcoTracker iOS",
+          "desc": "Gamified carbon footprint tracker developed during the Academy macro challenge."
+        },
+        "pt": {
+          "title": "EcoTracker iOS",
+          "desc": "Rastreador de pegada de carbono gamificado desenvolvido durante o macro desafio da Academy."
+        }
+      },
+      {
+        "tech": "AVFoundation, UIKit",
+        "link": "https://github.com/pedr0fsc/soundscape",
+        "en": {
+          "title": "SoundScape",
+          "desc": "Interactive ambient sound generator designed for focus and productivity."
+        },
+        "pt": {
+          "title": "SoundScape",
+          "desc": "Gerador de som ambiente interativo projetado para foco e produtividade."
+        }
+      },
+      {
+        "tech": "React, Tailwind",
+        "link": "https://github.com/pedr0fsc/dev-portfolio",
+        "en": {
+          "title": "Portfolio Web",
+          "desc": "Mobile-first responsive developer showcase deployed on Cloudflare Pages."
+        },
+        "pt": {
+          "title": "Portfolio Web",
+          "desc": "Portfólio de desenvolvedor mobile-first responsivo publicado no Cloudflare Pages."
+        }
+      }
+    ]
+  },
+  "footer": {
+    "en": {
+      "letsConnect": "Let's Connect",
+      "footerCredits": "Apple Developer Academy Profile. Built with React & Tailwind CSS."
+    },
+    "pt": {
+      "letsConnect": "Vamos nos conectar",
+      "footerCredits": "Perfil do Apple Developer Academy. Desenvolvido com React & Tailwind CSS."
+    }
+  }
+}
