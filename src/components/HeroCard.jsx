@@ -23,12 +23,7 @@ export function HeroCard() {
 
         {/* Content & Pills */}
         <div>
-          <span className={`text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider ${
-            isDark ? "bg-blue-500/20 text-blue-400" : "bg-blue-100 text-blue-700"
-          }`}>
-            {copy.student}
-          </span>
-          
+                   
           <h1 className="text-3xl md:text-5xl font-extrabold mt-3 text-[var(--text-hero-title)]">
             {copy.role}
           </h1>
@@ -42,7 +37,7 @@ export function HeroCard() {
             {skills.map((skill) => (
               <span
                 key={skill.name}
-                className={`text-xs font-medium px-3 py-1 rounded-full border transition hover:scale-105 ${
+                className={`text-xs font-medium px-3 py-1 rounded-full border ${
                   isDark
                     ? "bg-blue-500/15 text-blue-400 border-blue-500/30"
                     : "bg-blue-50/80 text-blue-600 border-blue-100"

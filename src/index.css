@@ -1,10 +1,8 @@
 @import "tailwindcss";
 
-/* Prevent white overscroll/rubber-banding gaps */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4.5rem; /* Offset for the sticky navbar height when jumping to anchors */
-  overscroll-behavior-y: none;
+  scroll-padding-top: 5rem; /* Offsets scroll target so fixed navbar doesn't cover section titles */
 }
 
 /* Theme variables */
@@ -57,19 +55,19 @@ html {
 body {
   margin: 0;
   padding: 0;
-  overflow-x: clip; /* clip horizontal overflow without creating a new scroll container */
+  background-color: var(--bg-app);
+  color: var(--text-navbar);
+  overflow-x: clip;
   transition: background-color 0.3s, color 0.3s;
 }
 
-
-/* View Transition API - Circular reveal theme switch configuration */
+/* View Transition API */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
 
-/* Custom layer ordering to allow dynamic reveal clipping */
 ::view-transition-old(root) {
   z-index: 1;
 }
