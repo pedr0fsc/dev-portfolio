@@ -92,11 +92,11 @@
   "footer": {
     "en": {
       "letsConnect": "Let's Connect",
-      "footerCredits": "Apple Developer Academy Profile. Built with React & Tailwind CSS."
+      "footerCredits": "Pedro da Fonseca Schwertner. All rights reserved."
     },
     "pt": {
       "letsConnect": "Vamos nos conectar",
-      "footerCredits": "Perfil do Apple Developer Academy. Desenvolvido com React & Tailwind CSS."
+      "footerCredits": "Pedro da Fonseca Schwertner. Todos os direitos reservados."
     }
   }
 }

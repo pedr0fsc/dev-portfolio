@@ -2,8 +2,8 @@ import { useState, useMemo } from "react";
 import { useApp } from "../context/AppContext";
 import graphData from "../data/graph.json";
 
-const ROW_HEIGHT = 100; // Espaçamento vertical
-const COL_WIDTH = 45;   // Espaçamento horizontal entre colunas
+const ROW_HEIGHT = 60; // Espaçamento vertical
+const COL_WIDTH = 45;  // Espaçamento horizontal entre colunas
 
 function buildTimeline(branches) {
   const allNodes = [];
