@@ -2,11 +2,13 @@
   "navbar": {
     "en": {
       "about": "About",
+      "journey": "Journey",
       "projects": "Projects",
       "contact": "Contact"
     },
     "pt": {
       "about": "Sobre",
+      "journey": "Jornada",
       "projects": "Projetos",
       "contact": "Contato"
     }
@@ -30,6 +32,14 @@
       { "name": "Esp32", "color": "bg-red-500/10 text-red-700 border-red-200 dark:bg-red-500/15 dark:text-red-400 dark:border-red-500/30" },
       { "name": "Git", "color": "bg-cyan-500/10 text-cyan-700 border-cyan-200 dark:bg-cyan-500/15 dark:text-cyan-400 dark:border-cyan-500/30" }
     ]
+  },
+  "presentation": {
+    "en": {
+      "text": "My name is Pedro"
+    },
+    "pt": {
+      "text": "Meu nome é Pedro"
+    }
   },
   "projectsSection": {
     "en": {
