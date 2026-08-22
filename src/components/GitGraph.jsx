@@ -2,6 +2,9 @@ import { useState, useMemo } from "react";
 import { useApp } from "../context/AppContext";
 import graphData from "../data/graph.json";
 
+const ROW_HEIGHT = 100; // Espaçamento vertical
+const COL_WIDTH = 45;   // Espaçamento horizontal entre colunas
+
 function buildTimeline(branches) {
   const allNodes = [];
 
@@ -19,7 +22,6 @@ function buildTimeline(branches) {
     });
   });
 
-  // Sort chronologically by year, then by branch index for stable ordering
   allNodes.sort((a, b) => {
     const yearDiff = parseInt(a.year) - parseInt(b.year);
     if (yearDiff !== 0) return yearDiff;
@@ -29,276 +31,238 @@ function buildTimeline(branches) {
   return allNodes;
 }
 
-/**
- * Commit dot — the "ball" on the graph line.
- * Expands into a mini card on hover / tap.
- */
-function CommitNode({ node, lang, isDark, side, branchColumns, totalColumns }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const copy = node[lang] || node["en"];
-  const colIndex = branchColumns[node.branchId];
-
-  return (
-    <div
-      className="group relative flex items-start gap-0"
-      style={{ minHeight: "80px" }}
-      onMouseEnter={() => setIsExpanded(true)}
-      onMouseLeave={() => setIsExpanded(false)}
-      onTouchStart={() => setIsExpanded((v) => !v)}
-    >
-      {/* ── Left-side card (even rows) ── */}
-      {side === "left" && (
-        <div className="flex-1 flex justify-end pr-4 md:pr-6">
-          <NodeCard
-            copy={copy}
-            node={node}
-            isDark={isDark}
-            isExpanded={isExpanded}
-            align="right"
-            lang={lang}
-          />
-        </div>
-      )}
-      {side === "right" && <div className="flex-1" />}
-
-      {/* ── Graph column (dots + lines) ── */}
-      <div
-        className="relative flex flex-col items-center"
-        style={{ width: `${totalColumns * 28 + 20}px` }}
-      >
-        {/* Vertical line — main trunk */}
-        <div
-          className="absolute top-0 bottom-0 w-0.5 opacity-40"
-          style={{
-            left: `${0 * 28 + 10}px`,
-            backgroundColor: graphData.branches[0]?.color || "#3b82f6",
-          }}
-        />
-
-        {/* Vertical line for this branch */}
-        {colIndex > 0 && (
-          <div
-            className="absolute top-0 bottom-0 w-0.5 opacity-25"
-            style={{
-              left: `${colIndex * 28 + 10}px`,
-              backgroundColor: node.branchColor,
-            }}
-          />
-        )}
-
-        {/* Horizontal connector from main trunk to branch column */}
-        {colIndex > 0 && (
-          <div
-            className="absolute h-0.5 opacity-30"
-            style={{
-              top: "18px",
-              left: `${0 * 28 + 10}px`,
-              width: `${colIndex * 28}px`,
-              backgroundColor: node.branchColor,
-            }}
-          />
-        )}
-
-        {/* The commit dot */}
-        <div
-          className="relative z-10 mt-2 rounded-full border-[3px] transition-all duration-300 cursor-pointer shrink-0"
-          style={{
-            width: isExpanded ? "18px" : "14px",
-            height: isExpanded ? "18px" : "14px",
-            borderColor: node.branchColor,
-            backgroundColor: isExpanded
-              ? node.branchColor
-              : isDark
-              ? "#0f172a"
-              : "#f8fafc",
-            marginLeft: `${colIndex * 28}px`,
-            boxShadow: isExpanded
-              ? `0 0 12px ${node.branchColor}66`
-              : "none",
-          }}
-        />
-
-        {/* Year label under the dot */}
-        <span
-          className="mt-1 text-[10px] font-bold tracking-wide opacity-60 whitespace-nowrap"
-          style={{
-            marginLeft: `${colIndex * 28}px`,
-            color: isDark ? "#94a3b8" : "#64748b",
-          }}
-        >
-          {node.year}
-        </span>
-      </div>
-
-      {/* ── Right-side card (odd rows) ── */}
-      {side === "right" && (
-        <div className="flex-1 flex justify-start pl-4 md:pl-6">
-          <NodeCard
-            copy={copy}
-            node={node}
-            isDark={isDark}
-            isExpanded={isExpanded}
-            align="left"
-            lang={lang}
-          />
-        </div>
-      )}
-      {side === "left" && <div className="flex-1" />}
-    </div>
-  );
-}
-
-/**
- * The expandable mini-card that shows when hovering a commit dot.
- */
-function NodeCard({ copy, node, isDark, isExpanded, align, lang }) {
-  return (
-    <div
-      className={`
-        transition-all duration-300 ease-out rounded-xl overflow-hidden
-        border shadow-lg max-w-xs w-full
-        ${isExpanded
-          ? "opacity-100 translate-y-0 scale-100"
-          : "opacity-0 translate-y-2 scale-95 pointer-events-none"
-        }
-        ${isDark
-          ? "bg-slate-800/90 border-slate-700/60 backdrop-blur-sm"
-          : "bg-white/90 border-slate-200/80 backdrop-blur-sm"
-        }
-      `}
-      style={{
-        maxHeight: isExpanded ? "400px" : "0px",
-      }}
-    >
-      {/* Banner image */}
-      {node.banner && (
-        <img
-          src={node.banner}
-          alt={copy.title}
-          className="w-full h-28 object-cover"
-        />
-      )}
-
-      <div className="p-3">
-        {/* Branch badge */}
-        <div className="flex items-center gap-2 mb-1.5">
-          <span
-            className="inline-block w-2 h-2 rounded-full shrink-0"
-            style={{ backgroundColor: node.branchColor }}
-          />
-          <span
-            className="text-[10px] font-semibold uppercase tracking-wider opacity-70"
-            style={{ color: node.branchColor }}
-          >
-            {node.branchLabel[lang] || node.branchLabel["en"]}
-          </span>
-          <span className={`text-[10px] ml-auto ${isDark ? "text-slate-500" : "text-slate-400"}`}>
-            {node.age !== undefined && node.age !== null
-              ? `${node.age}y`
-              : ""}
-          </span>
-        </div>
-
-        <h4
-          className={`text-sm font-bold leading-snug ${
-            isDark ? "text-white" : "text-slate-900"
-          }`}
-        >
-          {copy.title}
-        </h4>
-        <p
-          className={`text-xs mt-1 leading-relaxed ${
-            isDark ? "text-slate-400" : "text-slate-600"
-          }`}
-        >
-          {copy.description}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-/**
- * Git-graph timeline section.
- * Reads graph.json and renders a vertical branch-aware timeline.
- */
 export function GitGraph() {
   const { lang, theme } = useApp();
   const isDark = theme === "dark";
   const sectionCopy = graphData.sectionTitle[lang] || graphData.sectionTitle["en"];
 
-  // Assign each branch a column index (0 = main trunk, 1+  = branches)
+  // Mapeia colunas alternando entre direita (+1) e esquerda (-1) ao redor do Main (0)
   const branchColumns = useMemo(() => {
     const cols = {};
-    graphData.branches.forEach((b, i) => {
-      cols[b.id] = i;
+    let rightOffset = 1;
+    let leftOffset = -1;
+
+    graphData.branches.forEach((b) => {
+      if (b.id === "main") {
+        cols[b.id] = 0; // Main sempre centralizado em 0
+      } else {
+        if (Math.abs(rightOffset) <= Math.abs(leftOffset)) {
+          cols[b.id] = rightOffset;
+          rightOffset++;
+        } else {
+          cols[b.id] = leftOffset;
+          leftOffset--;
+        }
+      }
     });
+
     return cols;
   }, []);
 
-  const totalColumns = graphData.branches.length;
+  const timeline = useMemo(() => buildTimeline(graphData.branches), []);
 
-  const timeline = useMemo(
-    () => buildTimeline(graphData.branches),
-    []
-  );
+  // Define uma largura fixa suficiente para acomodar os desvios laterais
+  // O centro exato (Main Trunk) será rigorosamente em graphWidth / 2
+  const maxBranchesSide = Math.ceil((graphData.branches.length - 1) / 2);
+  const graphWidth = (maxBranchesSide * 2 + 1) * COL_WIDTH + 60;
+  const CENTER_X = graphWidth / 2;
+
+  const renderSvgConnections = () => {
+    const paths = [];
+
+    // 1. Linha do Main Trunk rigorosamente centralizada
+    paths.push(
+      <line
+        key="main-trunk"
+        x1={CENTER_X}
+        y1={0}
+        x2={CENTER_X}
+        y2={timeline.length * ROW_HEIGHT}
+        stroke={graphData.branches.find((b) => b.id === "main")?.color || "#3b82f6"}
+        strokeWidth="3.5"
+        strokeOpacity="0.8"
+      />
+    );
+
+    // 2. Mapear histórico das branches
+    const branchNodes = {};
+    timeline.forEach((node, idx) => {
+      if (!branchNodes[node.branchId]) branchNodes[node.branchId] = [];
+      branchNodes[node.branchId].push({ ...node, rowIdx: idx });
+    });
+
+    Object.keys(branchNodes).forEach((bId) => {
+      if (bId === "main") return;
+
+      const nodes = branchNodes[bId];
+      const colOffset = branchColumns[bId];
+      const targetX = CENTER_X + colOffset * COL_WIDTH;
+
+      const firstNode = nodes[0];
+      const startX = CENTER_X;
+      const startY = (firstNode.rowIdx - 0.5) * ROW_HEIGHT;
+      const endY = firstNode.rowIdx * ROW_HEIGHT + ROW_HEIGHT / 2;
+
+      const tension = ROW_HEIGHT * 0.45;
+
+      // Desenha a curva do Main Trunk para o primeiro nó
+      paths.push(
+        <path
+          key={`branch-start-${bId}`}
+          d={`M ${startX} ${startY} C ${startX} ${startY + tension}, ${targetX} ${endY - tension}, ${targetX} ${endY}`}
+          stroke={firstNode.branchColor}
+          strokeWidth="3.5"
+          fill="none"
+          strokeOpacity="0.9"
+          strokeLinecap="round"
+        />
+      );
+
+      // Linhas verticais que conectam os pontos da mesma branch
+      for (let i = 0; i < nodes.length - 1; i++) {
+        const n1 = nodes[i];
+        const n2 = nodes[i + 1];
+        const y1 = n1.rowIdx * ROW_HEIGHT + ROW_HEIGHT / 2;
+        const y2 = n2.rowIdx * ROW_HEIGHT + ROW_HEIGHT / 2;
+
+        paths.push(
+          <line
+            key={`branch-line-${bId}-${i}`}
+            x1={targetX}
+            y1={y1}
+            x2={targetX}
+            y2={y2}
+            stroke={n1.branchColor}
+            strokeWidth="3.5"
+            strokeOpacity="0.9"
+          />
+        );
+      }
+    });
+
+    return paths;
+  };
 
   return (
-    <section
-      id="journey"
-      className="py-16 px-4 transition-colors duration-300 bg-[var(--bg-hero)] text-[var(--text-hero)]"
-    >
-      <div className="max-w-4xl mx-auto">
-        {/* Section title */}
+    <section id="journey" className="py-16 px-4 transition-colors duration-300 bg-[var(--bg-hero)] text-[var(--text-hero)]">
+      <div className="max-w-7xl mx-auto">
         <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 text-[var(--text-hero-title)]">
           {sectionCopy}
         </h2>
 
-        {/* Branch legend */}
+        {/* Legend */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">
           {graphData.branches.map((branch) => (
             <div key={branch.id} className="flex items-center gap-1.5">
-              <span
-                className="w-2.5 h-2.5 rounded-full"
-                style={{ backgroundColor: branch.color }}
-              />
-              <span
-                className={`text-xs font-medium ${
-                  isDark ? "text-slate-400" : "text-slate-500"
-                }`}
-              >
+              <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: branch.color }} />
+              <span className={`text-xs font-medium ${isDark ? "text-slate-400" : "text-slate-500"}`}>
                 {branch.label[lang] || branch.label["en"]}
               </span>
             </div>
           ))}
         </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {timeline.map((node, idx) => (
-            <CommitNode
-              key={`${node.branchId}-${node.year}-${idx}`}
-              node={node}
-              lang={lang}
-              isDark={isDark}
-              side={idx % 2 === 0 ? "left" : "right"}
-              branchColumns={branchColumns}
-              totalColumns={totalColumns}
-            />
-          ))}
+        {/* Timeline Container */}
+        <div className="relative flex justify-center">
+          {/* SVG Overlay perfeitamente alinhado */}
+          <svg
+            className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none overflow-visible"
+            style={{
+              width: `${graphWidth}px`,
+              height: timeline.length * ROW_HEIGHT,
+            }}
+          >
+            {renderSvgConnections()}
+          </svg>
 
-          {/* Terminal dot at the bottom */}
-          <div className="flex justify-center pt-2">
-            <div
-              className="w-3 h-3 rounded-full"
-              style={{
-                backgroundColor: graphData.branches[0]?.color || "#3b82f6",
-                boxShadow: `0 0 10px ${graphData.branches[0]?.color || "#3b82f6"}44`,
-              }}
-            />
+          {/* Nós e Cards */}
+          <div className="w-full max-w-7xl flex flex-col z-10">
+            {timeline.map((node, idx) => (
+              <CommitRow
+                key={`${node.branchId}-${node.year}-${idx}`}
+                node={node}
+                lang={lang}
+                isDark={isDark}
+                side={idx % 2 === 0 ? "left" : "right"}
+                colOffset={branchColumns[node.branchId]}
+                centerX={CENTER_X}
+                graphWidth={graphWidth}
+              />
+            ))}
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function CommitRow({ node, lang, isDark, side, colOffset, centerX, graphWidth }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const copy = node[lang] || node["en"];
+  const dotX = centerX + colOffset * COL_WIDTH;
+
+  return (
+    <div
+      className="flex items-center w-full"
+      style={{ height: `${ROW_HEIGHT}px` }}
+      onMouseEnter={() => setIsExpanded(true)}
+      onMouseLeave={() => setIsExpanded(false)}
+    >
+      {/* Lado Esquerdo */}
+      <div className="flex-1 flex justify-end pr-4">
+        {side === "left" && (
+          <NodeCard copy={copy} node={node} isDark={isDark} isExpanded={isExpanded} lang={lang} />
+        )}
+      </div>
+
+      {/* Coluna Central do Grafo */}
+      <div className="relative flex-shrink-0" style={{ width: `${graphWidth}px`, height: "100%" }}>
+        <div
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 rounded-full border-[3px] transition-all duration-300 cursor-pointer"
+          style={{
+            left: `${dotX}px`,
+            width: isExpanded ? "20px" : "16px",
+            height: isExpanded ? "20px" : "16px",
+            borderColor: node.branchColor,
+            backgroundColor: isDark ? "#0f172a" : "#ffffff",
+            boxShadow: isExpanded ? `0 0 16px ${node.branchColor}` : "none",
+          }}
+        />
+      </div>
+
+      {/* Lado Direito */}
+      <div className="flex-1 flex justify-start pl-4">
+        {side === "right" && (
+          <NodeCard copy={copy} node={node} isDark={isDark} isExpanded={isExpanded} lang={lang} />
+        )}
+      </div>
+    </div>
+  );
+}
+
+function NodeCard({ copy, node, isDark, isExpanded, lang }) {
+  return (
+    <div
+      className={`transition-all duration-300 ease-out rounded-xl overflow-hidden border shadow-lg max-w-xs w-full ${
+        isExpanded ? "opacity-100 scale-100 z-30" : "opacity-0 scale-95 pointer-events-none"
+      } ${
+        isDark ? "bg-slate-800/90 border-slate-700/60 backdrop-blur-sm" : "bg-white/90 border-slate-200/80 backdrop-blur-sm"
+      }`}
+    >
+      {node.banner && <img src={node.banner} alt={copy.title} className="w-full h-24 object-cover" />}
+      <div className="p-3">
+        <div className="flex items-center gap-2 mb-1">
+          <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: node.branchColor }} />
+          <span className="text-[10px] font-semibold uppercase tracking-wider opacity-70" style={{ color: node.branchColor }}>
+            {node.branchLabel[lang] || node.branchLabel["en"]}
+          </span>
+          <span className={`text-[10px] ml-auto ${isDark ? "text-slate-500" : "text-slate-400"}`}>
+            {node.age !== undefined && node.age !== null ? `${node.age}y` : ""}
+          </span>
+        </div>
+        <h4 className={`text-sm font-bold ${isDark ? "text-white" : "text-slate-900"}`}>{copy.title}</h4>
+        <p className={`text-xs mt-1 ${isDark ? "text-slate-400" : "text-slate-600"}`}>{copy.description}</p>
+      </div>
+    </div>
   );
 }
