@@ -10,6 +10,7 @@ export function Navbar() {
   const { theme, toggleTheme, lang, changeLanguage } = useApp();
   const settingsRef = useRef(null);
   const isDark = theme === "dark";
+  
   const copy = content.navbar[lang];
 
   // Close dropdown on click outside
@@ -30,21 +31,21 @@ export function Navbar() {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b shadow-sm transition-colors duration-300 ${
+    <nav className={`site-navbar fixed top-0 left-0 right-0 z-50 w-full backdrop-blur-md border-b shadow-sm transition-colors duration-300 ${
       isDark 
         ? "bg-slate-900/80 border-slate-800 text-white shadow-md" 
         : "bg-white/80 border-slate-200 text-slate-800"
     }`}>
-      <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div className="navbar-inner max-w-6xl mx-auto px-4 py-3 flex items-center">
         {/* Brand */}
-        <div className="flex items-center space-x-2 font-bold text-lg">
+        <div className="navbar-brand flex shrink-0 items-center space-x-2 font-bold text-lg">
           <span className={isDark ? "text-blue-400" : "text-blue-600"}>&lt;</span>
           <span className={isDark ? "text-white" : "text-slate-800"}>pedr0fsc</span>
           <span className={isDark ? "text-blue-400" : "text-blue-600"}>/&gt;</span>
         </div>
 
         {/* Desktop Links, Socials & Config */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden md:ml-auto md:flex items-center space-x-6">
           <a href="#hero" className={`transition font-medium text-sm ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`}>{copy.about}</a>
           <a href="#projects" className={`transition font-medium text-sm ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`}>{copy.projects}</a>
           <a href="#contact" className={`transition font-medium text-sm ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`}>{copy.contact}</a>
@@ -128,7 +129,7 @@ export function Navbar() {
 
         {/* Mobile Menu Button */}
         <button 
-          className={`md:hidden hover:text-slate-800 transition ${isDark ? "text-slate-300 hover:text-white" : "text-slate-600"}`} 
+          className={`navbar-menu-toggle ml-auto shrink-0 md:hidden hover:text-slate-800 transition ${isDark ? "text-slate-300 hover:text-white" : "text-slate-600"}`} 
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}

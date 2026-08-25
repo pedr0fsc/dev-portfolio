@@ -163,32 +163,34 @@ export function GitGraph() {
         </div>
 
         {/* Timeline Container */}
-        <div className="relative flex justify-center">
-          {/* SVG Overlay perfeitamente alinhado */}
-          <svg
-            className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none overflow-visible"
-            style={{
-              width: `${graphWidth}px`,
-              height: timeline.length * ROW_HEIGHT,
-            }}
-          >
-            {renderSvgConnections()}
-          </svg>
+        <div className="journey-timeline">
+          <div className="journey-timeline-content relative flex justify-center">
+            {/* SVG Overlay perfeitamente alinhado */}
+            <svg
+              className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none overflow-visible"
+              style={{
+                width: `${graphWidth}px`,
+                height: timeline.length * ROW_HEIGHT,
+              }}
+            >
+              {renderSvgConnections()}
+            </svg>
 
-          {/* Nós e Cards */}
-          <div className="w-full max-w-7xl flex flex-col z-10">
-            {timeline.map((node, idx) => (
-              <CommitRow
-                key={`${node.branchId}-${node.year}-${idx}`}
-                node={node}
-                lang={lang}
-                isDark={isDark}
-                side={idx % 2 === 0 ? "left" : "right"}
-                colOffset={branchColumns[node.branchId]}
-                centerX={CENTER_X}
-                graphWidth={graphWidth}
-              />
-            ))}
+            {/* Nós e Cards */}
+            <div className="w-full max-w-7xl flex flex-col z-10">
+              {timeline.map((node, idx) => (
+                <CommitRow
+                  key={`${node.branchId}-${node.year}-${idx}`}
+                  node={node}
+                  lang={lang}
+                  isDark={isDark}
+                  side={idx % 2 === 0 ? "left" : "right"}
+                  colOffset={branchColumns[node.branchId]}
+                  centerX={CENTER_X}
+                  graphWidth={graphWidth}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -209,7 +211,7 @@ function CommitRow({ node, lang, isDark, side, colOffset, centerX, graphWidth })
       onMouseLeave={() => setIsExpanded(false)}
     >
       {/* Lado Esquerdo */}
-      <div className="flex-1 flex justify-end pr-4">
+      <div className="flex-1 min-w-0 flex justify-end pr-4">
         {side === "left" && (
           <NodeCard copy={copy} node={node} isDark={isDark} isExpanded={isExpanded} lang={lang} />
         )}
@@ -231,7 +233,7 @@ function CommitRow({ node, lang, isDark, side, colOffset, centerX, graphWidth })
       </div>
 
       {/* Lado Direito */}
-      <div className="flex-1 flex justify-start pl-4">
+      <div className="flex-1 min-w-0 flex justify-start pl-4">
         {side === "right" && (
           <NodeCard copy={copy} node={node} isDark={isDark} isExpanded={isExpanded} lang={lang} />
         )}

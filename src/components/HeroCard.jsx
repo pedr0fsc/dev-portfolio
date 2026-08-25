@@ -33,7 +33,7 @@ export function HeroCard() {
           </p>
 
           {/* Skill Pill Badges */}
-          <div className="mt-6 flex flex-wrap justify-center md:justify-start gap-2">
+          {/* <div className="mt-6 flex flex-wrap justify-center md:justify-start gap-2">
             {skills.map((skill) => (
               <span
                 key={skill.name}
@@ -46,7 +46,7 @@ export function HeroCard() {
                 {skill.name}
               </span>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
