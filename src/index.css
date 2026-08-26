@@ -13,9 +13,12 @@ html {
 
 /* Theme variables */
 :root {
+  --font-heading: "Outfit", "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-body: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+
   --bg-app: #f8fafc;
-  --bg-navbar: rgba(255, 255, 255, 0.8);
-  --border-navbar: #e2e8f0;
+  --bg-navbar: transparent;
+  --border-navbar: transparent;
   --text-navbar: #1e293b;
 
   --bg-hero: #f8fafc;
@@ -37,8 +40,8 @@ html {
 
 .dark {
   --bg-app: #020617;
-  --bg-navbar: rgba(15, 23, 42, 0.8);
-  --border-navbar: #1e293b;
+  --bg-navbar: transparent;
+  --border-navbar: transparent;
   --text-navbar: #f8fafc;
 
   --bg-hero: #0f172a;
@@ -61,12 +64,25 @@ html {
 body {
   margin: 0;
   padding: 0;
+  font-family: var(--font-body);
   background-color: var(--bg-app);
   color: var(--text-navbar);
   overflow-x: clip;
   transition:
     background-color 0.3s,
     color 0.3s;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading,
+.navbar-brand {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
 }
 
 body.project-dialog-open {
@@ -112,18 +128,15 @@ body.project-dialog-open {
   }
 
   .journey-timeline {
-    justify-content: flex-start;
+    width: 100%;
     max-width: 100%;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    padding-bottom: 0.75rem;
-    scrollbar-width: thin;
+    overflow: visible;
   }
 
   .journey-timeline-content {
-    width: 34rem;
-    min-width: 34rem;
-    margin-left: calc(50% - 17rem);
+    width: 100%;
+    min-width: 0;
+    margin-left: 0;
   }
 }
 .project-card {
@@ -233,10 +246,10 @@ body.project-dialog-open {
 .project-dialog {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(19rem, 0.95fr);
+  grid-template-columns: minmax(0, 1.15fr) minmax(19rem, 0.85fr);
   width: min(100%, 70rem);
   max-height: min(50rem, calc(100vh - 2rem));
-  overflow: auto;
+  overflow: hidden;
   border: 1px solid var(--border-card);
   border-radius: 1.25rem;
   background: var(--bg-card);
@@ -244,18 +257,37 @@ body.project-dialog-open {
   animation: project-dialog-in 330ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .project-dialog-media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   min-height: 100%;
   overflow: hidden;
-  background: #0f172a;
+  background: #0b0f19;
 }
-.project-dialog-media img {
+.project-dialog-image {
+  width: 100%;
+  height: 100%;
   min-height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
+  display: block;
   animation: project-image-in 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-dialog-video-player {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  background: #000000;
+  display: block;
 }
 .project-dialog-content {
   padding: clamp(1.5rem, 4vw, 2.5rem);
+  overflow-y: auto;
+  max-height: min(50rem, calc(100vh - 2rem));
 }
 .project-dialog-heading {
   display: flex;
@@ -343,8 +375,10 @@ body.project-dialog-open {
   gap: 0.55rem;
   margin-top: 1.5rem;
   overflow-x: auto;
+  padding-bottom: 0.25rem;
 }
-.project-gallery button {
+.project-gallery-thumb {
+  position: relative;
   width: 4.5rem;
   height: 3rem;
   flex: 0 0 auto;
@@ -352,20 +386,42 @@ body.project-dialog-open {
   padding: 0;
   border: 2px solid transparent;
   border-radius: 0.45rem;
-  background: transparent;
+  background: #0f172a;
   cursor: pointer;
   opacity: 0.65;
+  transition: opacity 0.2s, border-color 0.2s;
 }
-.project-gallery button.is-active {
+.project-gallery-thumb:hover {
+  opacity: 0.9;
+}
+.project-gallery-thumb.is-active {
   border-color: #3b82f6;
   opacity: 1;
 }
-.project-dialog-video {
-  margin-top: 1.5rem;
-}
-.project-dialog-video video {
+.project-gallery-thumb img {
   width: 100%;
-  border-radius: 0.75rem;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.project-gallery-video-thumb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #0f172a;
+}
+.project-gallery-video-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #1e293b;
+}
+.project-gallery-play-icon {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgb(15 23 42 / 60%);
+  color: #ffffff;
 }
 .project-dialog-demo {
   margin-top: 1.5rem;
@@ -404,10 +460,19 @@ body.project-dialog-open {
   .project-dialog {
     grid-template-columns: 1fr;
     max-height: calc(100vh - 1rem);
+    overflow-y: auto;
   }
   .project-dialog-media {
-    min-height: 13rem;
-    max-height: 35vh;
+    width: 100%;
+    min-height: 12rem;
+    max-height: 40vh;
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
+  }
+  .project-dialog-content {
+    overflow-y: visible;
+    max-height: none;
+    padding: 1.25rem;
   }
   .project-dialog-heading {
     flex-direction: column;

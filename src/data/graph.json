@@ -6,12 +6,15 @@
   "branches": [
     {
       "id": "main",
+      "from": null,
       "label": { "en": "Life", "pt": "Vida" },
       "color": "#3b82f6",
       "nodes": [
         {
           "year": "2005",
           "age": 0,
+          "final": false,
+          "image": null,
           "banner": null,
           "en": {
             "title": "Hello, World!",
@@ -26,12 +29,15 @@
     },
     {
       "id": "technology",
+      "from": "main",
       "label": { "en": "Technology", "pt": "Tecnologia" },
       "color": "#10b981",
       "nodes": [
         {
           "year": "2017",
           "age": 12,
+          "final": false,
+          "image": null,
           "banner": null,
           "en": {
             "title": "First Lines of Code",
@@ -45,6 +51,8 @@
         {
           "year": "2020",
           "age": 15,
+          "final": true,
+          "image": null,
           "banner": null,
           "en": {
             "title": "Electronics & Arduino",
@@ -59,12 +67,15 @@
     },
     {
       "id": "drawing",
+      "from": "main",
       "label": { "en": "Drawing", "pt": "Desenho" },
       "color": "#f59e0b",
       "nodes": [
         {
           "year": "2018",
           "age": 13,
+          "final": true,
+          "image": null,
           "banner": null,
           "en": {
             "title": "Sketch Beginnings",
@@ -79,12 +90,38 @@
     },
     {
       "id": "english",
+      "from": "main",
       "label": { "en": "English", "pt": "Inglês" },
       "color": "#8b5cf6",
       "nodes": [
         {
           "year": "2019",
           "age": 14,
+          "final": true,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Learning English",
+            "description": "Started studying English seriously to access global tech resources and communities."
+          },
+          "pt": {
+            "title": "Aprendendo Inglês",
+            "description": "Comecei a estudar inglês seriamente para acessar recursos e comunidades globais de tecnologia."
+          }
+        }
+      ]
+    },
+    {
+      "id": "eletronics",
+      "from": "technology",
+      "label": { "en": "Eletronics", "pt": "Eletrônica" },
+      "color": "#8b2ca6",
+      "nodes": [
+        {
+          "year": "2025",
+          "age": 17,
+          "final": true,
+          "image": null,
           "banner": null,
           "en": {
             "title": "Learning English",

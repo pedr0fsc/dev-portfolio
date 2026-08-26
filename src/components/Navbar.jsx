@@ -7,11 +7,29 @@ import content from "../data/content.json";
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { theme, toggleTheme, lang, changeLanguage } = useApp();
   const settingsRef = useRef(null);
   const isDark = theme === "dark";
   
   const copy = content.navbar[lang];
+
+  // Detect when user scrolls past hero section
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroElement = document.getElementById("hero");
+      if (heroElement) {
+        const heroBottom = heroElement.getBoundingClientRect().bottom;
+        setIsScrolled(heroBottom <= 80);
+      } else {
+        setIsScrolled(window.scrollY > 60);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Close dropdown on click outside
   useEffect(() => {
@@ -31,26 +49,51 @@ export function Navbar() {
   ];
 
   return (
-    <nav className={`site-navbar fixed top-0 left-0 right-0 z-50 w-full backdrop-blur-md border-b shadow-sm transition-colors duration-300 ${
-      isDark 
-        ? "bg-slate-900/80 border-slate-800 text-white shadow-md" 
-        : "bg-white/80 border-slate-200 text-slate-800"
-    }`}>
+    <nav
+      className={`site-navbar fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out pointer-events-auto border-b ${
+        isScrolled
+          ? isDark
+            ? "bg-slate-900/85 border-slate-800 text-white backdrop-blur-md shadow-md"
+            : "bg-white/85 border-slate-200 text-slate-900 backdrop-blur-md shadow-sm"
+          : "bg-transparent border-transparent shadow-none"
+      }`}
+    >
       <div className="navbar-inner max-w-6xl mx-auto px-4 py-3 flex items-center">
         {/* Brand */}
-        <div className="navbar-brand flex shrink-0 items-center space-x-2 font-bold text-lg">
+        <div className="navbar-brand flex shrink-0 items-center space-x-1.5 font-bold text-lg font-heading">
           <span className={isDark ? "text-blue-400" : "text-blue-600"}>&lt;</span>
-          <span className={isDark ? "text-white" : "text-slate-800"}>pedr0fsc</span>
+          <span className={isDark ? "text-white font-extrabold" : "text-slate-900 font-extrabold"}>pedr0fsc</span>
           <span className={isDark ? "text-blue-400" : "text-blue-600"}>/&gt;</span>
         </div>
 
         {/* Desktop Links, Socials & Config */}
         <div className="hidden md:ml-auto md:flex items-center space-x-6">
-          <a href="#hero" className={`transition font-medium text-sm ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`}>{copy.about}</a>
-          <a href="#projects" className={`transition font-medium text-sm ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`}>{copy.projects}</a>
-          <a href="#contact" className={`transition font-medium text-sm ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`}>{copy.contact}</a>
+          <a
+            href="#hero"
+            className={`transition font-semibold text-sm ${
+              isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-700 hover:text-blue-600"
+            }`}
+          >
+            {copy.about}
+          </a>
+          <a
+            href="#projects"
+            className={`transition font-semibold text-sm ${
+              isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-700 hover:text-blue-600"
+            }`}
+          >
+            {copy.projects}
+          </a>
+          <a
+            href="#contact"
+            className={`transition font-semibold text-sm ${
+              isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-700 hover:text-blue-600"
+            }`}
+          >
+            {copy.contact}
+          </a>
           
-          <div className={`h-4 w-px mx-2 ${isDark ? "bg-slate-700" : "bg-slate-200"}`} />
+          <div className={`h-4 w-px mx-2 ${isDark ? "bg-slate-700/60" : "bg-slate-300"}`} />
 
           {/* Socials */}
           <div className="flex items-center space-x-4">
@@ -61,30 +104,34 @@ export function Navbar() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={label}
-                className={`transition ${isDark ? "text-slate-400 hover:text-blue-400" : "text-slate-400 hover:text-blue-600"}`}
+                className={`transition ${
+                  isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"
+                }`}
               >
                 <Icon size={18} />
               </a>
             ))}
           </div>
 
-          <div className={`h-4 w-px mx-2 ${isDark ? "bg-slate-700" : "bg-slate-200"}`} />
+          <div className={`h-4 w-px mx-2 ${isDark ? "bg-slate-700/60" : "bg-slate-300"}`} />
 
           {/* Config Menu Dropdown for Desktop */}
           <div className="relative" ref={settingsRef}>
             <button
               onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-              className={`transition p-1 rounded-md ${isDark ? "text-slate-400 hover:text-blue-400" : "text-slate-400 hover:text-blue-600"}`}
+              className={`transition p-1.5 rounded-md ${
+                isDark ? "text-slate-300 hover:text-blue-400 hover:bg-slate-800/40" : "text-slate-600 hover:text-blue-600 hover:bg-slate-200/50"
+              }`}
               aria-label="Settings"
             >
-              <Settings size={18} className={`${isSettingsOpen ? 'rotate-45' : ''} transition-transform duration-300`} />
+              <Settings size={18} className={`${isSettingsOpen ? "rotate-45" : ""} transition-transform duration-300`} />
             </button>
 
             {isSettingsOpen && (
-              <div className={`absolute right-0 mt-2 w-36 border rounded-lg shadow-xl p-2.5 flex flex-col gap-2 ${
+              <div className={`absolute right-0 mt-2 w-36 border rounded-xl shadow-2xl p-2.5 flex flex-col gap-2 backdrop-blur-md ${
                 isDark 
-                  ? "bg-slate-900 border-slate-800 text-white" 
-                  : "bg-white border-slate-200 text-slate-800"
+                  ? "bg-slate-900/95 border-slate-800 text-white" 
+                  : "bg-white/95 border-slate-200 text-slate-800"
               }`}>
                 {/* Theme selection row */}
                 <div className={`flex items-center justify-between border-b pb-2 ${isDark ? "border-slate-800" : "border-slate-100"}`}>
@@ -129,27 +176,30 @@ export function Navbar() {
 
         {/* Mobile Menu Button */}
         <button 
-          className={`navbar-menu-toggle ml-auto shrink-0 md:hidden hover:text-slate-800 transition ${isDark ? "text-slate-300 hover:text-white" : "text-slate-600"}`} 
+          className={`navbar-menu-toggle ml-auto shrink-0 md:hidden transition ${
+            isDark ? "text-slate-200 hover:text-white" : "text-slate-700 hover:text-slate-900"
+          }`} 
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu — always mounted, animated via max-height + opacity */}
+      {/* Mobile Menu Dropdown */}
       <div
-        className={`md:hidden border-t px-4 space-y-4 backdrop-blur-md overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-96 pt-3 pb-5 opacity-100" : "max-h-0 pt-0 pb-0 opacity-0 pointer-events-none"
-        } ${
+        className={`md:hidden px-4 transition-all duration-300 ease-in-out overflow-hidden ${
+          isOpen ? "max-h-96 opacity-100 pb-4" : "max-h-0 opacity-0 pointer-events-none pb-0"
+        }`}
+      >
+        <div className={`p-4 rounded-2xl border shadow-xl backdrop-blur-md space-y-4 ${
           isDark
             ? "bg-slate-900/95 border-slate-800"
             : "bg-white/95 border-slate-200"
-        }`}
-      >
+        }`}>
           <div className="space-y-3">
-            <a href="#hero" className={`block font-medium ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`} onClick={() => setIsOpen(false)}>{copy.about}</a>
-            <a href="#projects" className={`block font-medium ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`} onClick={() => setIsOpen(false)}>{copy.projects}</a>
-            <a href="#contact" className={`block font-medium ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`} onClick={() => setIsOpen(false)}>{copy.contact}</a>
+            <a href="#hero" className={`block font-semibold ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-700 hover:text-blue-600"}`} onClick={() => setIsOpen(false)}>{copy.about}</a>
+            <a href="#projects" className={`block font-semibold ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-700 hover:text-blue-600"}`} onClick={() => setIsOpen(false)}>{copy.projects}</a>
+            <a href="#contact" className={`block font-semibold ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-700 hover:text-blue-600"}`} onClick={() => setIsOpen(false)}>{copy.contact}</a>
           </div>
           
           <div className={`flex justify-between items-center pt-3 border-t ${isDark ? "border-slate-800" : "border-slate-200"}`}>
@@ -162,7 +212,7 @@ export function Navbar() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={label}
-                  className={`transition ${isDark ? "text-slate-400 hover:text-blue-400" : "text-slate-400 hover:text-blue-600"}`}
+                  className={`transition ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`}
                 >
                   <Icon size={20} />
                 </a>
@@ -215,6 +265,7 @@ export function Navbar() {
               </button>
             </div>
           </div>
+        </div>
       </div>
     </nav>
   );
