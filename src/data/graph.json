@@ -8,82 +8,78 @@
       "id": "main",
       "from": null,
       "label": { "en": "Life", "pt": "Vida" },
-      "color": "#3b82f6",
+      "color": "#2EE6D6",
       "nodes": [
         {
-          "year": "2005",
+          "year": "2007",
+          "month": 12,
           "age": 0,
           "final": false,
           "image": null,
           "banner": null,
           "en": {
             "title": "Hello, World!",
-            "description": "Born in Brazil — the initial commit of my journey."
+            "description": "Born on December 27, 2007, in Brazil. Grew up with two siblings and three dogs: Pirata, Tuffo, and Mel."
           },
           "pt": {
             "title": "Olá, Mundo!",
-            "description": "Nasci no Brasil — o commit inicial da minha jornada."
+            "description": "Nasci em 27 de dezembro de 2007, no Brasil. Cresci com dois irmãos e três cachorros: Pirata, Tuffo e Mel."
+          }
+        },
+        {
+          "year": "2026",
+          "month": 9,
+          "age": 18,
+          "final": true,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Present Chapter",
+            "description": "Living with my parents while studying Computer Science, leading CABCC, teaching robotics, and competing in programming marathons."
+          },
+          "pt": {
+            "title": "Capítulo Atual",
+            "description": "Moro com meus pais enquanto curso Ciência da Computação, presido o CABCC, ensino robótica e competimos na maratona de programação."
           }
         }
       ]
     },
     {
-      "id": "technology",
+      "id": "creative",
       "from": "main",
-      "label": { "en": "Technology", "pt": "Tecnologia" },
-      "color": "#10b981",
+      "label": { "en": "Creative", "pt": "Criativo" },
+      "color": "#FFC107",
       "nodes": [
         {
-          "year": "2017",
-          "age": 12,
+          "year": "2015",
+          "month": 1,
+          "age": 8,
           "final": false,
           "image": null,
           "banner": null,
           "en": {
-            "title": "First Lines of Code",
-            "description": "Wrote my first program and discovered a passion for building things with code."
+            "title": "Painting Classes",
+            "description": "Started painting lessons at age 8, alongside drawing, LEGO, and puzzles — practices that never left."
           },
           "pt": {
-            "title": "Primeiras Linhas de Código",
-            "description": "Escrevi meu primeiro programa e descobri a paixão por construir coisas com código."
+            "title": "Aulas de Pintura",
+            "description": "Comecei aulas de pintura aos 8 anos, junto com desenho, LEGO e quebra-cabeça — práticas que nunca saíram."
           }
         },
         {
-          "year": "2020",
-          "age": 15,
+          "year": "2026",
+          "month": 9,
+          "age": 18,
           "final": true,
           "image": null,
           "banner": null,
           "en": {
-            "title": "Electronics & Arduino",
-            "description": "Started experimenting with Arduino and embedded systems, merging hardware and software."
+            "title": "Still Making",
+            "description": "LEGO, drawing, and puzzles are still on the stack beside engineering work."
           },
           "pt": {
-            "title": "Eletrônica & Arduino",
-            "description": "Comecei a experimentar com Arduino e sistemas embarcados, unindo hardware e software."
-          }
-        }
-      ]
-    },
-    {
-      "id": "drawing",
-      "from": "main",
-      "label": { "en": "Drawing", "pt": "Desenho" },
-      "color": "#f59e0b",
-      "nodes": [
-        {
-          "year": "2018",
-          "age": 13,
-          "final": true,
-          "image": null,
-          "banner": null,
-          "en": {
-            "title": "Sketch Beginnings",
-            "description": "Picked up a pencil and started sketching — a creative outlet alongside coding."
-          },
-          "pt": {
-            "title": "Início dos Desenhos",
-            "description": "Peguei um lápis e comecei a desenhar — uma saída criativa ao lado da programação."
+            "title": "Ainda Fazendo",
+            "description": "LEGO, desenho e quebra-cabeça ainda estão na stack, ao lado da engenharia."
           }
         }
       ]
@@ -92,44 +88,518 @@
       "id": "english",
       "from": "main",
       "label": { "en": "English", "pt": "Inglês" },
-      "color": "#8b5cf6",
+      "color": "#8B5CFF",
       "nodes": [
         {
-          "year": "2019",
-          "age": 14,
+          "year": "2021",
+          "month": 12,
+          "age": 13,
           "final": true,
           "image": null,
           "banner": null,
           "en": {
-            "title": "Learning English",
-            "description": "Started studying English seriously to access global tech resources and communities."
+            "title": "Kumon English",
+            "description": "Completed Kumon's advanced English grammar and reading course."
           },
           "pt": {
-            "title": "Aprendendo Inglês",
-            "description": "Comecei a estudar inglês seriamente para acessar recursos e comunidades globais de tecnologia."
+            "title": "Inglês no Kumon",
+            "description": "Concluí o curso de gramática e leitura avançada da língua inglesa no Kumon."
           }
         }
       ]
     },
     {
-      "id": "eletronics",
-      "from": "technology",
-      "label": { "en": "Eletronics", "pt": "Eletrônica" },
-      "color": "#8b2ca6",
+      "id": "technology",
+      "from": "main",
+      "label": { "en": "Technology", "pt": "Tecnologia" },
+      "color": "#39E58C",
       "nodes": [
         {
+          "year": "2021",
+          "month": 6,
+          "age": 13,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "First Contact with Code",
+            "description": "Wrote my first programs and found a lasting pull toward building systems with software."
+          },
+          "pt": {
+            "title": "Primeiro Contato com Código",
+            "description": "Escrevi meus primeiros programas e descobri a vontade duradoura de construir sistemas com software."
+          }
+        },
+        {
+          "year": "2026",
+          "month": 5,
+          "age": 18,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Building Automation",
+            "description": "C++ / Qt desktop project exploring building-automation structure and real build tooling."
+          },
+          "pt": {
+            "title": "Automação Predial",
+            "description": "Projeto desktop em C++ / Qt explorando automação predial e ferramentas reais de build."
+          }
+        },
+        {
+          "year": "2026",
+          "month": 8,
+          "age": 18,
+          "final": true,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "This Portfolio",
+            "description": "Shipped this React portfolio as a public mark of the full-stack work running alongside embedded systems."
+          },
+          "pt": {
+            "title": "Este Portfólio",
+            "description": "Publiquei este portfólio em React como marca do trabalho full-stack ao lado dos sistemas embarcados."
+          }
+        }
+      ]
+    },
+    {
+      "id": "electronics",
+      "from": "technology",
+      "label": { "en": "Electronics", "pt": "Eletrônica" },
+      "color": "#00B8D9",
+      "nodes": [
+        {
+          "year": "2024",
+          "month": 9,
+          "age": 16,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "ESP8266 Plant Monitor",
+            "description": "Embedded plant-monitoring firmware in C++ — an early connected-hardware mark before university."
+          },
+          "pt": {
+            "title": "Monitor de Plantas ESP8266",
+            "description": "Firmware embarcado em C++ para monitoramento de plantas — uma marca de hardware conectado antes da faculdade."
+          }
+        },
+        {
           "year": "2025",
+          "month": 5,
+          "age": 17,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "ESP32 Weather Station",
+            "description": "First electronics project at university: an ESP32 / MicroPython weather station for live environmental data."
+          },
+          "pt": {
+            "title": "Estação Meteorológica ESP32",
+            "description": "Primeiro projeto de eletrônica na universidade: estação meteorológica com ESP32 e MicroPython."
+          }
+        },
+        {
+          "year": "2025",
+          "month": 8,
+          "age": 17,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Bullfrog Detector",
+            "description": "Arduino FFT experiment for detecting the American bullfrog call from audio — signal processing on the metal."
+          },
+          "pt": {
+            "title": "Detector de Rã-Touro",
+            "description": "Experimento com Arduino FFT para detectar o canto da rã-touro-americana — processamento de sinal no hardware."
+          }
+        },
+        {
+          "year": "2025",
+          "month": 8,
+          "age": 17,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Astrocare",
+            "description": "ESP32 vital-signs monitor concept for astronauts — electronics meeting a systems brief."
+          },
+          "pt": {
+            "title": "Astrocare",
+            "description": "Conceito de monitor de sinais vitais em ESP32 para astronautas — eletrônica encontrando um brief de sistemas."
+          }
+        },
+        {
+          "year": "2025",
+          "month": 11,
+          "age": 17,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "ESP32 Client–Server",
+            "description": "Networked architecture linking ESP32 firmware with Python services."
+          },
+          "pt": {
+            "title": "Cliente–Servidor ESP32",
+            "description": "Arquitetura em rede ligando firmware ESP32 a serviços em Python."
+          }
+        },
+        {
+          "year": "2026",
+          "month": 4,
+          "age": 18,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Garage MQTT",
+            "description": "ESP32 garage automation over MQTT — publish/subscribe on real hardware."
+          },
+          "pt": {
+            "title": "Garagem MQTT",
+            "description": "Automação de garagem com ESP32 e MQTT — publish/subscribe em hardware real."
+          }
+        },
+        {
+          "year": "2026",
+          "month": 5,
+          "age": 18,
+          "final": true,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "FreeRTOS Turn Signal",
+            "description": "C / FreeRTOS model of automotive turn-signal timing and concurrent tasks."
+          },
+          "pt": {
+            "title": "Pisca-Pisca FreeRTOS",
+            "description": "Modelo em C / FreeRTOS do temporizador de seta automotiva e tarefas concorrentes."
+          }
+        }
+      ]
+    },
+    {
+      "id": "robotics",
+      "from": "technology",
+      "label": { "en": "Robotics", "pt": "Robótica" },
+      "color": "#FF4D6D",
+      "nodes": [
+        {
+          "year": "2023",
+          "month": 3,
+          "age": 15,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "TecPuc Robotics",
+            "description": "Joined and helped create the TecPuc robotics team."
+          },
+          "pt": {
+            "title": "Robótica TecPuc",
+            "description": "Entrei e ajudei a criar a equipe de robótica da TecPuc."
+          }
+        },
+        {
+          "year": "2023",
+          "month": 11,
+          "age": 15,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "TecPuc Closed",
+            "description": "The school closed in the last months of 2023, before my senior year — the team chapter ended early."
+          },
+          "pt": {
+            "title": "TecPuc Fechou",
+            "description": "O colégio fechou nos últimos meses de 2023, antes do meu terceirão — o capítulo da equipe acabou cedo."
+          }
+        },
+        {
+          "year": "2024",
+          "month": 3,
+          "age": 16,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Team Ampharos",
+            "description": "Joined Ampharos and kept competing after TecPuc."
+          },
+          "pt": {
+            "title": "Equipe Ampharos",
+            "description": "Entrei na Ampharos e segui competindo depois da TecPuc."
+          }
+        }
+      ]
+    },
+    {
+      "id": "competition",
+      "from": "robotics",
+      "label": { "en": "Competition", "pt": "Competição" },
+      "color": "#FF8A00",
+      "nodes": [
+        {
+          "year": "2024",
+          "month": 6,
+          "age": 16,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "OBR State Stage",
+            "description": "Advanced to the state stage of the Brazilian Robotics Olympiad with Ampharos."
+          },
+          "pt": {
+            "title": "OBR Estadual",
+            "description": "Avancei à etapa estadual da Olimpíada Brasileira de Robótica com a Ampharos."
+          }
+        },
+        {
+          "year": "2024",
+          "month": 8,
+          "age": 16,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "FTC Regional 1st",
+            "description": "1st place overall at the FTC regional with Ampharos."
+          },
+          "pt": {
+            "title": "1º Lugar FTC Regional",
+            "description": "1º lugar geral na etapa regional de FTC com a Ampharos."
+          }
+        },
+        {
+          "year": "2025",
+          "month": 3,
           "age": 17,
           "final": true,
           "image": null,
           "banner": null,
           "en": {
-            "title": "Learning English",
-            "description": "Started studying English seriously to access global tech resources and communities."
+            "title": "FTC Nationals",
+            "description": "Traveled to Brasília for the national stage of FTC Into the Deep."
           },
           "pt": {
-            "title": "Aprendendo Inglês",
-            "description": "Comecei a estudar inglês seriamente para acessar recursos e comunidades globais de tecnologia."
+            "title": "Nacional de FTC",
+            "description": "Viajei a Brasília para a etapa nacional do FTC Into the Deep."
+          }
+        }
+      ]
+    },
+    {
+      "id": "teaching",
+      "from": "robotics",
+      "label": { "en": "Teaching", "pt": "Ensino" },
+      "color": "#FF2E93",
+      "nodes": [
+        {
+          "year": "2025",
+          "month": 5,
+          "age": 17,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Robotics Professor",
+            "description": "Internship as educational robotics professor, mentor, and technician at SESI Portão — training Little Wizards with Ingrid and Hellen."
+          },
+          "pt": {
+            "title": "Professor de Robótica",
+            "description": "Estágio como professor, mentor e técnico de robótica educacional no SESI Portão — treinando a Little Wizards com Ingrid e Hellen."
+          }
+        },
+        {
+          "year": "2026",
+          "month": 9,
+          "age": 18,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Osíris FTC Mentor",
+            "description": "Joined Osíris as FTC mentor, passing competition experience to a new team."
+          },
+          "pt": {
+            "title": "Mentor FTC Osíris",
+            "description": "Entrei na Osíris como mentor de FTC, levando a experiência de competição para uma nova equipe."
+          }
+        },
+        {
+          "year": "2026",
+          "month": 9,
+          "age": 18,
+          "final": true,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Osíris FLL Technician",
+            "description": "Also serving Osíris as FLL technician."
+          },
+          "pt": {
+            "title": "Técnico FLL Osíris",
+            "description": "Também atuo na Osíris como técnico de FLL."
+          }
+        }
+      ]
+    },
+    {
+      "id": "education",
+      "from": "main",
+      "label": { "en": "Education", "pt": "Formação" },
+      "color": "#3B82FF",
+      "nodes": [
+        {
+          "year": "2025",
+          "month": 3,
+          "age": 17,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Computer Science at PUCPR",
+            "description": "Started the B.S. in Computer Science at PUCPR."
+          },
+          "pt": {
+            "title": "Ciência da Computação na PUCPR",
+            "description": "Iniciei o curso de Ciência da Computação na PUCPR."
+          }
+        },
+        {
+          "year": "2026",
+          "month": 3,
+          "age": 18,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "PIBITI — Second-Life BMS",
+            "description": "Research with Prof. Joelton Gotz: an intelligent BMS board for second-life lithium-ion batteries."
+          },
+          "pt": {
+            "title": "PIBITI — BMS de Segunda Vida",
+            "description": "Pesquisa com o Prof. Joelton Gotz: placa BMS inteligente para baterias de íons de lítio de segunda vida."
+          }
+        },
+        {
+          "year": "2026",
+          "month": 6,
+          "age": 18,
+          "final": true,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Fragile X Check-in",
+            "description": "Delivered a full-stack extension project: a check-in system for a Fragile X diagnostic institute."
+          },
+          "pt": {
+            "title": "Check-in do X Frágil",
+            "description": "Entregamos um projeto de extensão full-stack: sistema de check-in para um instituto de diagnóstico da síndrome do X frágil."
+          }
+        }
+      ]
+    },
+    {
+      "id": "leadership",
+      "from": "education",
+      "label": { "en": "Leadership", "pt": "Liderança" },
+      "color": "#C44DFF",
+      "nodes": [
+        {
+          "year": "2026",
+          "month": 3,
+          "age": 18,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Refounding CABCC",
+            "description": "Started the process of refounding the Computer Science Academic Center at PUCPR."
+          },
+          "pt": {
+            "title": "Refundando o CABCC",
+            "description": "Iniciei o processo de refundar o Centro Acadêmico de Ciência da Computação da PUCPR."
+          }
+        },
+        {
+          "year": "2026",
+          "month": 5,
+          "age": 18,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "CABCC Presidency",
+            "description": "Assumed the presidency and formally founded CABCC."
+          },
+          "pt": {
+            "title": "Presidência do CABCC",
+            "description": "Assumi a presidência e fizemos a fundação do CABCC."
+          }
+        },
+        {
+          "year": "2026",
+          "month": 6,
+          "age": 18,
+          "final": true,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Speakers & Events",
+            "description": "Brought speakers, companies, and a cooperative conversation-circle as CABCC organizer."
+          },
+          "pt": {
+            "title": "Palestras e Eventos",
+            "description": "Trouxemos palestrantes, empresas e uma roda de conversa cooperativa como organizador do CABCC."
+          }
+        }
+      ]
+    },
+    {
+      "id": "competitive",
+      "from": "education",
+      "label": { "en": "Marathon", "pt": "Maratona" },
+      "color": "#F43FC4",
+      "nodes": [
+        {
+          "year": "2026",
+          "month": 6,
+          "age": 18,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "SBC Team",
+            "description": "Joined PUCPR's SBC Programming Marathon team, mentored by Prof. Alcides Calsavara."
+          },
+          "pt": {
+            "title": "Equipe SBC",
+            "description": "Entrei na equipe da Maratona SBC da PUCPR, com mentoria do Prof. Alcides Calsavara."
+          }
+        },
+        {
+          "year": "2026",
+          "month": 8,
+          "age": 18,
+          "final": true,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Competed for PUCPR",
+            "description": "Represented PUCPR and the CS program at the SBC Programming Marathon."
+          },
+          "pt": {
+            "title": "Competimos pela PUCPR",
+            "description": "Representamos a PUCPR e o curso de BCC na Maratona de Programação SBC."
           }
         }
       ]

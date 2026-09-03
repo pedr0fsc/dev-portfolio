@@ -1,0 +1,138 @@
+{
+  "sectionTitle": {
+    "en": "My Journey",
+    "pt": "Minha Jornada"
+  },
+  "branches": [
+    {
+      "id": "main",
+      "from": null,
+      "label": { "en": "Life", "pt": "Vida" },
+      "color": "#3b82f6",
+      "nodes": [
+        {
+          "year": "2005",
+          "age": 0,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Hello, World!",
+            "description": "Born in Brazil — the initial commit of my journey."
+          },
+          "pt": {
+            "title": "Olá, Mundo!",
+            "description": "Nasci no Brasil — o commit inicial da minha jornada."
+          }
+        }
+      ]
+    },
+    {
+      "id": "technology",
+      "from": "main",
+      "label": { "en": "Technology", "pt": "Tecnologia" },
+      "color": "#10b981",
+      "nodes": [
+        {
+          "year": "2017",
+          "age": 12,
+          "final": false,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "First Lines of Code",
+            "description": "Wrote my first program and discovered a passion for building things with code."
+          },
+          "pt": {
+            "title": "Primeiras Linhas de Código",
+            "description": "Escrevi meu primeiro programa e descobri a paixão por construir coisas com código."
+          }
+        },
+        {
+          "year": "2020",
+          "age": 15,
+          "final": true,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Electronics & Arduino",
+            "description": "Started experimenting with Arduino and embedded systems, merging hardware and software."
+          },
+          "pt": {
+            "title": "Eletrônica & Arduino",
+            "description": "Comecei a experimentar com Arduino e sistemas embarcados, unindo hardware e software."
+          }
+        }
+      ]
+    },
+    {
+      "id": "drawing",
+      "from": "main",
+      "label": { "en": "Drawing", "pt": "Desenho" },
+      "color": "#f59e0b",
+      "nodes": [
+        {
+          "year": "2018",
+          "age": 13,
+          "final": true,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Sketch Beginnings",
+            "description": "Picked up a pencil and started sketching — a creative outlet alongside coding."
+          },
+          "pt": {
+            "title": "Início dos Desenhos",
+            "description": "Peguei um lápis e comecei a desenhar — uma saída criativa ao lado da programação."
+          }
+        }
+      ]
+    },
+    {
+      "id": "english",
+      "from": "main",
+      "label": { "en": "English", "pt": "Inglês" },
+      "color": "#8b5cf6",
+      "nodes": [
+        {
+          "year": "2019",
+          "age": 14,
+          "final": true,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Learning English",
+            "description": "Started studying English seriously to access global tech resources and communities."
+          },
+          "pt": {
+            "title": "Aprendendo Inglês",
+            "description": "Comecei a estudar inglês seriamente para acessar recursos e comunidades globais de tecnologia."
+          }
+        }
+      ]
+    },
+    {
+      "id": "eletronics",
+      "from": "technology",
+      "label": { "en": "Eletronics", "pt": "Eletrônica" },
+      "color": "#8b2ca6",
+      "nodes": [
+        {
+          "year": "2025",
+          "age": 17,
+          "final": true,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "Learning English",
+            "description": "Started studying English seriously to access global tech resources and communities."
+          },
+          "pt": {
+            "title": "Aprendendo Inglês",
+            "description": "Comecei a estudar inglês seriamente para acessar recursos e comunidades globais de tecnologia."
+          }
+        }
+      ]
+    }
+  ]
+}

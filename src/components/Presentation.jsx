@@ -1,8 +1,9 @@
-import { Cpu, Server, Radio, Sparkles, Terminal, Code2 } from "lucide-react";
+import { Cpu, Globe, Award, Sparkles, Terminal, GraduationCap, Users, Bot, Code2, MapPin } from "lucide-react";
 import { useApp } from "../context/AppContext";
 import content from "../data/content.json";
 
-const PILLAR_ICONS = [Cpu, Server, Radio];
+const PILLAR_ICONS = [Cpu, Globe, Award];
+const HIGHLIGHT_ICONS = [GraduationCap, Users, Bot, Code2, MapPin];
 
 export function Presentation() {
   const { lang, theme } = useApp();
@@ -17,7 +18,7 @@ export function Presentation() {
       <div className="max-w-5xl mx-auto space-y-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-blue-500/10 text-blue-500 border border-blue-500/20 font-heading">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-blue-500/10 text-blue-500 border border-blue-500/20 font-heading">
             <Sparkles size={14} className="text-blue-500" />
             <span>{copy.badge}</span>
           </div>
@@ -41,7 +42,7 @@ export function Presentation() {
           }`}>
             <div className="flex items-center gap-2 text-blue-500 mb-1">
               <Terminal size={20} />
-              <span className="font-mono text-xs font-bold tracking-widest uppercase">System.Story</span>
+              <span className="font-mono text-xs font-bold tracking-widest uppercase">System.Profile</span>
             </div>
 
             {copy.story.map((paragraph, idx) => (
@@ -52,31 +53,34 @@ export function Presentation() {
           </div>
 
           {/* Quick Highlight Cards */}
-          <div className="lg:col-span-5 flex flex-col justify-between gap-4">
-            {copy.highlights.map((item, idx) => (
-              <div 
-                key={idx}
-                className={`p-5 rounded-2xl border transition-all duration-300 hover:scale-[1.02] flex items-center justify-between gap-4 ${
-                  isDark
-                    ? "bg-slate-900/50 border-slate-800/80 hover:border-blue-500/40"
-                    : "bg-white/80 border-slate-200 hover:border-blue-300"
-                }`}
-              >
-                <div className="space-y-1">
-                  <span className={`text-xs font-semibold uppercase tracking-wider ${
-                    isDark ? "text-slate-400" : "text-slate-500"
-                  }`}>
-                    {item.label}
-                  </span>
-                  <h3 className="text-sm sm:text-base font-bold text-[var(--text-projects-title)] font-heading">
-                    {item.value}
-                  </h3>
+          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3.5">
+            {copy.highlights.map((item, idx) => {
+              const HighlightIcon = HIGHLIGHT_ICONS[idx] || Code2;
+              return (
+                <div 
+                  key={idx}
+                  className={`p-4 sm:p-4.5 rounded-xl border transition-all duration-300 hover:scale-[1.015] flex items-center justify-between gap-4 ${
+                    isDark
+                      ? "bg-slate-900/50 border-slate-800/80 hover:border-blue-500/40"
+                      : "bg-white/80 border-slate-200 hover:border-blue-300"
+                  }`}
+                >
+                  <div className="space-y-0.5 min-w-0">
+                    <span className={`text-[11px] font-semibold uppercase tracking-wider block ${
+                      isDark ? "text-slate-400" : "text-slate-500"
+                    }`}>
+                      {item.label}
+                    </span>
+                    <h3 className="text-sm sm:text-base font-bold text-[var(--text-projects-title)] font-heading truncate">
+                      {item.value}
+                    </h3>
+                  </div>
+                  <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-blue-500/10 text-blue-500 border border-blue-500/20">
+                    <HighlightIcon size={18} />
+                  </div>
                 </div>
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-blue-500/10 text-blue-500">
-                  <Code2 size={20} />
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 

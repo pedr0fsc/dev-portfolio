@@ -14,71 +14,75 @@
     }
   },
   "hero": {
-    "backgroundImage": "/src/assets/hero.png",
+    "backgroundImage": "/src/assets/hero.jpg",
     "en": {
-      "role": "Backend Developer & Electronic Designer",
-      "bio": "Building intuitive applications and exploring modern platforms. Focused on accessible design and clean code architectures."
+      "role": "Systems Developer, Electronic Designer & Robotics Professor",
+      "bio": "Computer Science student at PUCPR, Systems Technician, and educational robotics professor. Building web apps, embedded IoT devices, and backend systems — and teaching the next teams to do the same."
     },
     "pt": {
-      "role": "Desenvolvedor Backend & Projetista Eletrônico",
-      "bio": "Construindo aplicações intuitivas e explorando plataformas modernas. Focado em design acessível e arquiteturas de código limpo."
+      "role": "Desenvolvedor de Sistemas, Projetista Eletrônico & Professor de Robótica",
+      "bio": "Estudante de Ciência da Computação na PUCPR, Técnico em Sistemas e professor de robótica educacional. Criando aplicações web, dispositivos IoT embarcados e backends — e formando as próximas equipes."
     }
   },
   "presentation": {
     "en": {
       "badge": "About Me",
-      "heading": "Crafting Solutions from Silicon to Servers",
-      "tagline": "Passionate about creating robust backend systems, embedded electronics, and intuitive digital experiences.",
+      "heading": "Engineering Systems from Silicon to the Web",
+      "tagline": "Computer Science student at PUCPR, systems technician, robotics professor, and academic leader. Blending embedded hardware (C++, ESP32, FreeRTOS) with full-stack web applications and backend automation.",
       "story": [
-        "I am Pedro da Fonseca Schwertner, a developer and electronic designer driven by curiosity for how complex systems operate — from the physics of circuit boards up to distributed cloud services.",
-        "My work merges low-level hardware prototyping (microcontrollers like ESP32 & Arduino with C++ and MicroPython) with modern backend engineering (Python, FastAPI, SQL, Docker) and accessible front-end development."
+        "I am Pedro da Fonseca Schwertner, a Computer Science undergraduate at PUCPR and Systems Development technician based in Curitiba, Brazil. Driven by analytical problem solving, my experience bridges low-level embedded hardware and C++ firmware with modern full-stack web engineering (React, TypeScript, Tailwind) and automated backend pipelines in Python and Java.",
+        "I teach educational robotics as a professor, mentor, and technician — first with Team Little Wizards at SESI Portão, and now with Osíris (FTC mentor and FLL technician). I also compete: Ampharos reached the FTC national stage in Brasília after a regional 1st place, and I represent PUCPR on the SBC Programming Marathon team. As President of CABCC I refounded the Computer Science Academic Center; on the research side I work on a PIBITI intelligent BMS for second-life lithium-ion batteries, and I helped ship a check-in system for a Fragile X diagnostic institute."
       ],
       "pillars": [
         {
-          "title": "Embedded Systems & IoT",
-          "description": "Firmware architecture, sensor integration, real-time control, and hardware-software communication."
+          "title": "Embedded & IoT Engineering",
+          "description": "C/C++ firmware, ESP32, Arduino, FreeRTOS, MicroPython, MQTT, and smart hardware (such as ML-driven BMS battery monitoring with PIBITI)."
         },
         {
-          "title": "Backend Engineering",
-          "description": "API design, database modeling, asynchronous queues, and scalable modular architectures."
+          "title": "Full-Stack Web & Backend",
+          "description": "Modern frontend with React, TypeScript, Vite, and Tailwind CSS alongside solid backend architectures, Docker containerization, and SQL/Python services."
         },
         {
-          "title": "Creative Electronics",
-          "description": "Circuit prototyping, audio frequency regulators, telemetry devices, and custom hardware."
+          "title": "Teaching, Leadership & Competition",
+          "description": "Robotics professor and mentor (Little Wizards, Osíris FTC/FLL), President of CABCC PUCPR, and competitive programming on the SBC marathon team."
         }
       ],
       "highlights": [
-        { "label": "Primary Focus", "value": "Backend & Embedded IoT" },
-        { "label": "Core Stack", "value": "C++, Python, Java, JS/TS, SQL" },
-        { "label": "Hardware", "value": "ESP32, Arduino, MicroPython" }
+        { "label": "Education", "value": "B.S. in Computer Science @ PUCPR" },
+        { "label": "Leadership", "value": "President of CABCC (PUCPR)" },
+        { "label": "Robotics", "value": "Professor, mentor & technician" },
+        { "label": "Core Stack", "value": "C++, Java, Python, TypeScript, React" },
+        { "label": "Location", "value": "Curitiba, PR — Brazil" }
       ]
     },
     "pt": {
       "badge": "Sobre Mim",
-      "heading": "Criando Soluções do Silício aos Servidores",
-      "tagline": "Apaixonado por criar sistemas backend robustos, eletrônica embarcada e experiências digitais intuitivas.",
+      "heading": "Engenharia de Sistemas do Silício à Web",
+      "tagline": "Estudante de Ciência da Computação na PUCPR, técnico em sistemas, professor de robótica e líder acadêmico. Unindo hardware embarcado (C++, ESP32, FreeRTOS) com aplicações web full-stack e automação backend.",
       "story": [
-        "Sou Pedro da Fonseca Schwertner, desenvolvedor e projetista eletrônico movido pela curiosidade de como sistemas complexos operam — desde a física das placas de circuito até serviços distribuídos.",
-        "Meu trabalho une a prototipagem de hardware de baixo nível (microcontroladores como ESP32 e Arduino com C++ e MicroPython) com engenharia de backend moderna (Python, FastAPI, SQL, Docker) e front-end acessível."
+        "Sou Pedro da Fonseca Schwertner, estudante de Ciência da Computação na PUCPR e Técnico em Desenvolvimento de Sistemas em Curitiba, PR. Movido pela resolução analítica de problemas, minha experiência conecta hardware embarcado de baixo nível e firmware em C++ com engenharia web moderna (React, TypeScript, Tailwind) e automação em Python e Java.",
+        "Atuo como professor, mentor e técnico de robótica educacional — primeiro com a equipe Little Wizards no SESI Portão e agora na Osíris (mentor de FTC e técnico de FLL). Também competi: a Ampharos foi à etapa nacional de FTC em Brasília após o 1º lugar regional, e represento a PUCPR na Maratona SBC. Como presidente do CABCC, refundei o Centro Acadêmico de Ciência da Computação; na pesquisa, participo do PIBITI de um BMS inteligente para baterias de segunda vida, e entregamos um sistema de check-in para um instituto de diagnóstico da síndrome do X frágil."
       ],
       "pillars": [
         {
-          "title": "Sistemas Embarcados & IoT",
-          "description": "Arquitetura de firmware, integração de sensores, controle em tempo real e comunicação hardware-software."
+          "title": "Embarcados & Engenharia IoT",
+          "description": "Firmware em C/C++, ESP32, Arduino, FreeRTOS, MicroPython, MQTT e hardware inteligente (como BMS com Machine Learning para baterias via PIBITI)."
         },
         {
-          "title": "Engenharia de Backend",
-          "description": "Design de APIs, modelagem de banco de dados, filas assíncronas e arquiteturas modulares escaláveis."
+          "title": "Web Full-Stack & Backend",
+          "description": "Front-end moderno com React, TypeScript, Vite e Tailwind CSS aliado a arquiteturas sólidas de backend, Docker e serviços em SQL e Python."
         },
         {
-          "title": "Eletrônica Criativa",
-          "description": "Prototipagem de circuitos, reguladores de frequência sonora, dispositivos de telemetria e hardware personalizado."
+          "title": "Ensino, Liderança & Competição",
+          "description": "Professor e mentor de robótica (Little Wizards, Osíris FTC/FLL), Presidente do CABCC PUCPR e equipe da Maratona SBC de programação."
         }
       ],
       "highlights": [
-        { "label": "Foco Principal", "value": "Backend & IoT Embarcado" },
-        { "label": "Stack Principal", "value": "C++, Python, Java, JS/TS, SQL" },
-        { "label": "Hardware", "value": "ESP32, Arduino, MicroPython" }
+        { "label": "Formação", "value": "BCC na PUCPR & Técnico em Sistemas" },
+        { "label": "Liderança", "value": "Presidente do CABCC (PUCPR)" },
+        { "label": "Robótica", "value": "Professor, mentor e técnico" },
+        { "label": "Stack Principal", "value": "C++, Java, Python, TypeScript, React" },
+        { "label": "Localização", "value": "Curitiba, PR — Brasil" }
       ]
     }
   },
