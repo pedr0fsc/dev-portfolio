@@ -210,7 +210,7 @@ export function ProjectGrid() {
               return (
                 <article
                   key={project.id}
-                  className={`project-card ${mobileVisibility} rounded-xl shadow-md hover:shadow-xl transition border bg-[var(--bg-card)] border-[var(--border-card)]`}
+                  className={`project-card ${mobileVisibility} rounded-xl shadow-md border bg-[var(--bg-card)] border-[var(--border-card)]`}
                 >
                   <button
                     type="button"
@@ -230,9 +230,7 @@ export function ProjectGrid() {
                         {localized.title}
                       </h3>
                       <p
-                        className={`text-xs font-semibold mt-2 ${
-                          isDark ? "text-blue-400" : "text-blue-600"
-                        }`}
+                        className="text-xs font-semibold mt-2 text-accent"
                       >
                         {project.tech.join(" · ")}
                       </p>
@@ -247,10 +245,10 @@ export function ProjectGrid() {
                         href={project.links.github}
                         target="_blank"
                         rel="noreferrer"
-                        className={`inline-flex items-center text-xs font-semibold transition gap-1.5 ${
+                        className={`inline-flex items-center text-xs font-semibold transition gap-1.5 hover-accent ${
                           isDark
-                            ? "text-slate-300 hover:text-blue-400"
-                            : "text-slate-700 hover:text-blue-600"
+                            ? "text-slate-300"
+                            : "text-slate-700"
                         }`}
                       >
                         <FaGithub size={16} aria-hidden="true" />

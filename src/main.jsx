@@ -3,6 +3,9 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { AppProvider } from './context/AppContext.jsx'
+import { ACTIVE_PALETTE } from './theme/palettes.js'
+
+document.documentElement.dataset.palette = ACTIVE_PALETTE
 
 // Global smooth scroll for every same-page anchor link
 document.addEventListener('click', (e) => {

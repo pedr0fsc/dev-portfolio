@@ -216,18 +216,18 @@ export function GitGraph() {
             isDark ? "border-slate-800 bg-slate-950/40" : "border-slate-200 bg-white/70"
           }`}
         >
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto overscroll-x-contain">
             <div
-              className="relative"
-              style={{ minWidth: `${graphWidth + (isMobile ? 220 : 420)}px` }}
+              className="relative graph-track"
+              style={{ minWidth: `${graphWidth + (isMobile ? (activeId ? 340 : 28) : 420)}px` }}
             >
               {commits.map((commit) => {
-                const copy = commit[lang] || commit.en;
                 const isActive = activeId === commit.id;
                 return (
-                  <div
+                  <button
                     key={`bg-${commit.id}`}
-                    className="absolute left-0 right-0 transition-colors duration-150"
+                    type="button"
+                    className="absolute left-0 right-0 z-20 transition-colors duration-150"
                     style={{
                       top: `${GRAPH_PAD_Y + commit.rowIdx * ROW_HEIGHT}px`,
                       height: `${ROW_HEIGHT}px`,
@@ -237,11 +237,24 @@ export function GitGraph() {
                           : "rgba(15,23,42,0.05)"
                         : "transparent",
                     }}
+                    onMouseEnter={() => {
+                      if (!isMobile) setActiveId(commit.id);
+                    }}
+                    onMouseLeave={() => {
+                      if (!isMobile) setActiveId(null);
+                    }}
+                    onClick={() => {
+                      if (isMobile) {
+                        setActiveId((current) => (current === commit.id ? null : commit.id));
+                      }
+                    }}
+                    aria-expanded={isMobile ? isActive : undefined}
+                    aria-label={`${commit.year} — ${(commit[lang] || commit.en).title}`}
                   />
                 );
               })}
 
-              <div className="relative flex">
+              <div className="relative flex pointer-events-none">
                 <svg
                   className="shrink-0 relative z-10"
                   width={graphWidth}
@@ -303,15 +316,12 @@ export function GitGraph() {
                   {commits.map((commit) => {
                     const copy = commit[lang] || commit.en;
                     const isActive = activeId === commit.id;
+                    const isExpanded = !isMobile || isActive;
                     const label = commit.branchLabel[lang] || commit.branchLabel.en;
 
                     return (
-                      <button
+                      <div
                         key={commit.id}
-                        type="button"
-                        onMouseEnter={() => setActiveId(commit.id)}
-                        onMouseLeave={() => setActiveId(null)}
-                        onFocus={() => setActiveId(commit.id)}
                         className="absolute left-0 right-0 flex items-center gap-2.5 px-2 sm:px-3 text-left"
                         style={{
                           top: `${GRAPH_PAD_Y + commit.rowIdx * ROW_HEIGHT}px`,
@@ -326,30 +336,32 @@ export function GitGraph() {
                             backgroundColor: commit.branchColor,
                           }}
                         />
-                        <span className="min-w-0 flex-1">
-                          <span className="flex items-baseline gap-2 min-w-0">
-                            <span
-                              className={`text-sm sm:text-[15px] font-semibold truncate ${
-                                isDark ? "text-slate-100" : "text-slate-900"
-                              }`}
-                            >
-                              {copy.title}
+                        <span
+                          className={`graph-commit-copy ${isExpanded ? "is-expanded" : ""}`}
+                        >
+                          <span className="graph-commit-copy-inner">
+                            <span className="flex items-baseline gap-2 min-w-0">
+                              <span
+                                className={`text-sm sm:text-[15px] font-semibold truncate ${
+                                  isDark ? "text-slate-100" : "text-slate-900"
+                                }`}
+                              >
+                                {copy.title}
+                              </span>
+                              <span
+                                className="text-[10px] sm:text-[11px] font-medium shrink-0 uppercase tracking-wide"
+                                style={{ color: commit.branchColor }}
+                              >
+                                {label}
+                              </span>
+                              <span
+                                className={`text-[11px] shrink-0 tabular-nums ${
+                                  isDark ? "text-slate-500" : "text-slate-400"
+                                }`}
+                              >
+                                {commit.year}
+                              </span>
                             </span>
-                            <span
-                              className="text-[10px] sm:text-[11px] font-medium shrink-0 uppercase tracking-wide"
-                              style={{ color: commit.branchColor }}
-                            >
-                              {label}
-                            </span>
-                            <span
-                              className={`text-[11px] shrink-0 tabular-nums ${
-                                isDark ? "text-slate-500" : "text-slate-400"
-                              }`}
-                            >
-                              {commit.year}
-                            </span>
-                          </span>
-                          {!isMobile && (
                             <span
                               className={`block text-xs truncate mt-0.5 ${
                                 isActive
@@ -363,9 +375,9 @@ export function GitGraph() {
                             >
                               {copy.description}
                             </span>
-                          )}
+                          </span>
                         </span>
-                      </button>
+                      </div>
                     );
                   })}
                 </div>

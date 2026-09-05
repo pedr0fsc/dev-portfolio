@@ -31,7 +31,7 @@
       "tagline": "Computer Science student at PUCPR, systems technician, robotics professor, and academic leader. Blending embedded hardware (C++, ESP32, FreeRTOS) with full-stack web applications and backend automation.",
       "story": [
         "I am Pedro da Fonseca Schwertner, a Computer Science undergraduate at PUCPR and Systems Development technician based in Curitiba, Brazil. Driven by analytical problem solving, my experience bridges low-level embedded hardware and C++ firmware with modern full-stack web engineering (React, TypeScript, Tailwind) and automated backend pipelines in Python and Java.",
-        "I teach educational robotics as a professor, mentor, and technician — first with Team Little Wizards at SESI Portão, and now with Osíris (FTC mentor and FLL technician). I also compete: Ampharos reached the FTC national stage in Brasília after a regional 1st place, and I represent PUCPR on the SBC Programming Marathon team. As President of CABCC I refounded the Computer Science Academic Center; on the research side I work on a PIBITI intelligent BMS for second-life lithium-ion batteries, and I helped ship a check-in system for a Fragile X diagnostic institute."
+        "I teach educational robotics as a professor, mentor, and technician — first with Team Little Wizards at SESI Portão, and now with Osíris (FTC mentor and FLL technician). I also compete: Ampharos reached the FTC national stage in Brasília after a regional 1st place, and I represent PUCPR on the SBC Programming Marathon team. As President of CABCC I refounded the Computer Science Academic Center; on the research side I work on a PIBITI intelligent BMS for second-life lithium-ion batteries, and I helped ship a check-in system for a Fragile X diagnostic institute. Off the bench I keep a photography collection on VSCO — a visual gallery of the same making that shows up in drawing, LEGO, and hardware."
       ],
       "pillars": [
         {
@@ -52,7 +52,8 @@
         { "label": "Leadership", "value": "President of CABCC (PUCPR)" },
         { "label": "Robotics", "value": "Professor, mentor & technician" },
         { "label": "Core Stack", "value": "C++, Java, Python, TypeScript, React" },
-        { "label": "Location", "value": "Curitiba, PR — Brazil" }
+        { "label": "Location", "value": "Curitiba, PR — Brazil" },
+        { "label": "Gallery", "value": "VSCO @Pedr0fsc", "href": "https://vsco.co/Pedr0fsc/gallery" }
       ]
     },
     "pt": {
@@ -61,7 +62,7 @@
       "tagline": "Estudante de Ciência da Computação na PUCPR, técnico em sistemas, professor de robótica e líder acadêmico. Unindo hardware embarcado (C++, ESP32, FreeRTOS) com aplicações web full-stack e automação backend.",
       "story": [
         "Sou Pedro da Fonseca Schwertner, estudante de Ciência da Computação na PUCPR e Técnico em Desenvolvimento de Sistemas em Curitiba, PR. Movido pela resolução analítica de problemas, minha experiência conecta hardware embarcado de baixo nível e firmware em C++ com engenharia web moderna (React, TypeScript, Tailwind) e automação em Python e Java.",
-        "Atuo como professor, mentor e técnico de robótica educacional — primeiro com a equipe Little Wizards no SESI Portão e agora na Osíris (mentor de FTC e técnico de FLL). Também competi: a Ampharos foi à etapa nacional de FTC em Brasília após o 1º lugar regional, e represento a PUCPR na Maratona SBC. Como presidente do CABCC, refundei o Centro Acadêmico de Ciência da Computação; na pesquisa, participo do PIBITI de um BMS inteligente para baterias de segunda vida, e entregamos um sistema de check-in para um instituto de diagnóstico da síndrome do X frágil."
+        "Atuo como professor, mentor e técnico de robótica educacional — primeiro com a equipe Little Wizards no SESI Portão e agora na Osíris (mentor de FTC e técnico de FLL). Também competi: a Ampharos foi à etapa nacional de FTC em Brasília após o 1º lugar regional, e represento a PUCPR na Maratona SBC. Como presidente do CABCC, refundei o Centro Acadêmico de Ciência da Computação; na pesquisa, participo do PIBITI de um BMS inteligente para baterias de segunda vida, e entregamos um sistema de check-in para um instituto de diagnóstico da síndrome do X frágil. Fora da bancada, mantenho uma coleção de fotografia no VSCO — uma galeria visual do mesmo fazer que aparece no desenho, no LEGO e no hardware."
       ],
       "pillars": [
         {
@@ -82,18 +83,23 @@
         { "label": "Liderança", "value": "Presidente do CABCC (PUCPR)" },
         { "label": "Robótica", "value": "Professor, mentor e técnico" },
         { "label": "Stack Principal", "value": "C++, Java, Python, TypeScript, React" },
-        { "label": "Localização", "value": "Curitiba, PR — Brasil" }
+        { "label": "Localização", "value": "Curitiba, PR — Brasil" },
+        { "label": "Galeria", "value": "VSCO @Pedr0fsc", "href": "https://vsco.co/Pedr0fsc/gallery" }
       ]
     }
   },
   "footer": {
     "en": {
       "letsConnect": "Let's Connect",
-      "footerCredits": "Pedro da Fonseca Schwertner. All rights reserved."
+      "footerCredits": "Pedro da Fonseca Schwertner. All rights reserved.",
+      "aiDisclaimerLabel": "AI disclaimer",
+      "aiDisclaimer": "I will wirte later"
     },
     "pt": {
       "letsConnect": "Vamos nos conectar",
-      "footerCredits": "Pedro da Fonseca Schwertner. Todos os direitos reservados."
+      "footerCredits": "Pedro da Fonseca Schwertner. Todos os direitos reservados.",
+      "aiDisclaimerLabel": "Aviso de IA",
+      "aiDisclaimer": "I will wirte later"
     }
   }
 }

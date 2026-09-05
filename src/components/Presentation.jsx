@@ -1,9 +1,9 @@
-import { Cpu, Globe, Award, Sparkles, Terminal, GraduationCap, Users, Bot, Code2, MapPin } from "lucide-react";
+import { Cpu, Globe, Award, Sparkles, Terminal, GraduationCap, Users, Bot, Code2, MapPin, Camera } from "lucide-react";
 import { useApp } from "../context/AppContext";
 import content from "../data/content.json";
 
 const PILLAR_ICONS = [Cpu, Globe, Award];
-const HIGHLIGHT_ICONS = [GraduationCap, Users, Bot, Code2, MapPin];
+const HIGHLIGHT_ICONS = [GraduationCap, Users, Bot, Code2, MapPin, Camera];
 
 export function Presentation() {
   const { lang, theme } = useApp();
@@ -18,11 +18,7 @@ export function Presentation() {
       <div className="max-w-5xl mx-auto space-y-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-blue-500/10 text-blue-500 border border-blue-500/20 font-heading">
-            <Sparkles size={14} className="text-blue-500" />
-            <span>{copy.badge}</span>
-          </div>
-
+         
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text-projects-title)] font-heading leading-tight">
             {copy.heading}
           </h2>
@@ -40,7 +36,7 @@ export function Presentation() {
               ? "bg-slate-900/70 border-slate-800" 
               : "bg-white/90 border-slate-200"
           }`}>
-            <div className="flex items-center gap-2 text-blue-500 mb-1">
+            <div className="flex items-center gap-2 text-accent mb-1">
               <Terminal size={20} />
               <span className="font-mono text-xs font-bold tracking-widest uppercase">System.Profile</span>
             </div>
@@ -56,15 +52,13 @@ export function Presentation() {
           <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3.5">
             {copy.highlights.map((item, idx) => {
               const HighlightIcon = HIGHLIGHT_ICONS[idx] || Code2;
-              return (
-                <div 
-                  key={idx}
-                  className={`p-4 sm:p-4.5 rounded-xl border transition-all duration-300 hover:scale-[1.015] flex items-center justify-between gap-4 ${
-                    isDark
-                      ? "bg-slate-900/50 border-slate-800/80 hover:border-blue-500/40"
-                      : "bg-white/80 border-slate-200 hover:border-blue-300"
-                  }`}
-                >
+              const cardClass = `p-4 sm:p-4.5 rounded-xl border flex items-center justify-between gap-4 ${
+                isDark
+                  ? "bg-slate-900/50 border-slate-800/80"
+                  : "bg-white/80 border-slate-200"
+              }`;
+              const inner = (
+                <>
                   <div className="space-y-0.5 min-w-0">
                     <span className={`text-[11px] font-semibold uppercase tracking-wider block ${
                       isDark ? "text-slate-400" : "text-slate-500"
@@ -75,9 +69,29 @@ export function Presentation() {
                       {item.value}
                     </h3>
                   </div>
-                  <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-blue-500/10 text-blue-500 border border-blue-500/20">
+                  <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 accent-chip">
                     <HighlightIcon size={18} />
                   </div>
+                </>
+              );
+
+              if (item.href) {
+                return (
+                  <a
+                    key={idx}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={cardClass}
+                  >
+                    {inner}
+                  </a>
+                );
+              }
+
+              return (
+                <div key={idx} className={cardClass}>
+                  {inner}
                 </div>
               );
             })}
@@ -91,13 +105,13 @@ export function Presentation() {
             return (
               <div
                 key={idx}
-                className={`p-6 sm:p-7 rounded-2xl border transition-all duration-300 hover:-translate-y-1.5 shadow-sm hover:shadow-xl flex flex-col ${
+                className={`p-6 sm:p-7 rounded-2xl border shadow-sm flex flex-col ${
                   isDark
-                    ? "bg-slate-900/80 border-slate-800 hover:border-blue-500/50 hover:bg-slate-900"
-                    : "bg-white border-slate-200 hover:border-blue-300 hover:bg-white"
+                    ? "bg-slate-900/80 border-slate-800"
+                    : "bg-white border-slate-200"
                 }`}
               >
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-gradient-to-br from-blue-500/20 to-indigo-500/10 text-blue-500 border border-blue-500/20">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 accent-chip">
                   <Icon size={24} />
                 </div>
 

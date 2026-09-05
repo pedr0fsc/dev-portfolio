@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useState, useEffect, useContext } from "react";
+import { ACTIVE_PALETTE } from "../theme/palettes";
 
 const AppContext = createContext();
 
@@ -14,6 +15,7 @@ export function AppProvider({ children }) {
 
   useEffect(() => {
     const root = window.document.documentElement;
+    root.dataset.palette = ACTIVE_PALETTE;
     if (theme === "dark") {
       root.classList.add("dark");
       root.style.colorScheme = "dark";

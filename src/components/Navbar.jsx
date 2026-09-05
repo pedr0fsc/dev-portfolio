@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, Settings, Sun, Moon } from "lucide-react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { SiVsco } from "react-icons/si";
 import { useApp } from "../context/AppContext";
 import content from "../data/content.json";
 
@@ -14,16 +15,10 @@ export function Navbar() {
   
   const copy = content.navbar[lang];
 
-  // Detect when user scrolls past hero section
+  // Show the bar after the first scroll — still in the hero, before the main title is covered
   useEffect(() => {
     const handleScroll = () => {
-      const heroElement = document.getElementById("hero");
-      if (heroElement) {
-        const heroBottom = heroElement.getBoundingClientRect().bottom;
-        setIsScrolled(heroBottom <= 80);
-      } else {
-        setIsScrolled(window.scrollY > 60);
-      }
+      setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -45,87 +40,88 @@ export function Navbar() {
   const socialLinks = [
     { href: "https://github.com/pedr0fsc", icon: FaGithub, label: "GitHub" },
     { href: "https://linkedin.com/in/pedrofsc", icon: FaLinkedin, label: "LinkedIn" },
+    { href: "https://vsco.co/Pedr0fsc/gallery", icon: SiVsco, label: "VSCO" },
     { href: "mailto:pedrodafonsecaschwertner@gmail.com", icon: FaEnvelope, label: "Email" },
   ];
 
   return (
     <nav
-      className={`site-navbar fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out pointer-events-auto border-b ${
-        isScrolled
-          ? isDark
-            ? "bg-slate-900/85 border-slate-800 text-white backdrop-blur-md shadow-md"
-            : "bg-white/85 border-slate-200 text-slate-900 backdrop-blur-md shadow-sm"
-          : "bg-transparent border-transparent shadow-none"
+      className={`site-navbar fixed top-0 left-0 right-0 z-50 w-full pointer-events-auto border-b ${
+        isScrolled ? "is-scrolled" : "bg-transparent border-transparent"
       }`}
     >
       <div className="navbar-inner max-w-6xl mx-auto px-4 py-3 flex items-center">
         {/* Brand */}
         <div className="navbar-brand flex shrink-0 items-center space-x-1.5 font-bold text-lg font-heading">
-          <span className={isDark ? "text-blue-400" : "text-blue-600"}>&lt;</span>
-          <span className={isDark ? "text-white font-extrabold" : "text-slate-900 font-extrabold"}>pedr0fsc</span>
-          <span className={isDark ? "text-blue-400" : "text-blue-600"}>/&gt;</span>
+          <a href="#hero" className="flex items-center space-x-1.5">
+            <span className="text-accent">&lt;</span>
+            <span className={isDark ? "text-white font-extrabold" : "text-slate-900 font-extrabold"}>pedr0fsc</span>
+            <span className="text-accent">/&gt;</span>
+          </a>
         </div>
 
         {/* Desktop Links, Socials & Config */}
-        <div className="hidden md:ml-auto md:flex items-center space-x-6">
+        <div className="hidden md:ml-auto md:flex items-center gap-6">
           <a
-            href="#hero"
-            className={`transition font-semibold text-sm ${
-              isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-700 hover:text-blue-600"
+            href="#presentation"
+            className={`transition font-semibold text-sm hover-accent ${
+              isDark ? "text-slate-300" : "text-slate-700"
             }`}
           >
             {copy.about}
           </a>
           <a
+            href="#journey"
+            className={`transition font-semibold text-sm hover-accent ${
+              isDark ? "text-slate-300" : "text-slate-700"
+            }`}
+          >
+            {copy.journey}
+          </a>
+          <a
             href="#projects"
-            className={`transition font-semibold text-sm ${
-              isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-700 hover:text-blue-600"
+            className={`transition font-semibold text-sm hover-accent ${
+              isDark ? "text-slate-300" : "text-slate-700"
             }`}
           >
             {copy.projects}
           </a>
           <a
             href="#contact"
-            className={`transition font-semibold text-sm ${
-              isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-700 hover:text-blue-600"
+            className={`transition font-semibold text-sm hover-accent ${
+              isDark ? "text-slate-300" : "text-slate-700"
             }`}
           >
             {copy.contact}
           </a>
-          
-          <div className={`h-4 w-px mx-2 ${isDark ? "bg-slate-700/60" : "bg-slate-300"}`} />
 
-          {/* Socials */}
-          <div className="flex items-center space-x-4">
-            {socialLinks.map(({ href, icon: Icon, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={label}
-                className={`transition ${
-                  isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"
+          <div className="navbar-tools">
+            <span className="navbar-vdiv" aria-hidden="true" />
+            <div className="navbar-socials">
+              {socialLinks.map(({ href, icon: Icon, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="navbar-icon"
+                >
+                  <Icon size={18} />
+                </a>
+              ))}
+            </div>
+            <span className="navbar-vdiv" aria-hidden="true" />
+            <div className="navbar-settings-slot relative" ref={settingsRef}>
+              <button
+                onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+                className={`transition rounded-md hover-accent ${
+                  isDark ? "text-slate-300 hover:bg-slate-800/40" : "text-slate-600 hover:bg-slate-200/50"
                 }`}
+                aria-label="Settings"
               >
-                <Icon size={18} />
-              </a>
-            ))}
-          </div>
-
-          <div className={`h-4 w-px mx-2 ${isDark ? "bg-slate-700/60" : "bg-slate-300"}`} />
-
-          {/* Config Menu Dropdown for Desktop */}
-          <div className="relative" ref={settingsRef}>
-            <button
-              onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-              className={`transition p-1.5 rounded-md ${
-                isDark ? "text-slate-300 hover:text-blue-400 hover:bg-slate-800/40" : "text-slate-600 hover:text-blue-600 hover:bg-slate-200/50"
-              }`}
-              aria-label="Settings"
-            >
-              <Settings size={18} className={`${isSettingsOpen ? "rotate-45" : ""} transition-transform duration-300`} />
-            </button>
+                <Settings size={18} className={`${isSettingsOpen ? "rotate-45" : ""} transition-transform duration-300`} />
+              </button>
 
             {isSettingsOpen && (
               <div className={`absolute right-0 mt-2 w-36 border rounded-xl shadow-2xl p-2.5 flex flex-col gap-2 backdrop-blur-md ${
@@ -138,7 +134,7 @@ export function Navbar() {
                   <span className={`text-xs font-semibold ${isDark ? "text-slate-400" : "text-slate-500"}`}>{lang === "pt" ? "Tema" : "Theme"}</span>
                   <button
                     onClick={toggleTheme}
-                    className={`p-1 rounded transition ${isDark ? "hover:bg-slate-800 text-blue-400" : "hover:bg-slate-100 text-blue-600"}`}
+                    className="p-1 rounded transition text-accent hover:opacity-80"
                   >
                     {isDark ? <Moon size={14} /> : <Sun size={14} />}
                   </button>
@@ -151,7 +147,7 @@ export function Navbar() {
                       onClick={() => changeLanguage("en")}
                       className={`text-[10px] px-1.5 py-0.5 rounded font-bold transition ${
                         lang === "en" 
-                          ? "bg-blue-600 text-white" 
+                          ? "bg-accent" 
                           : isDark ? "text-slate-400" : "text-slate-500"
                       }`}
                     >
@@ -161,7 +157,7 @@ export function Navbar() {
                       onClick={() => changeLanguage("pt")}
                       className={`text-[10px] px-1.5 py-0.5 rounded font-bold transition ${
                         lang === "pt" 
-                          ? "bg-blue-600 text-white" 
+                          ? "bg-accent" 
                           : isDark ? "text-slate-400" : "text-slate-500"
                       }`}
                     >
@@ -171,6 +167,7 @@ export function Navbar() {
                 </div>
               </div>
             )}
+          </div>
           </div>
         </div>
 
@@ -188,7 +185,7 @@ export function Navbar() {
       {/* Mobile Menu Dropdown */}
       <div
         className={`md:hidden px-4 transition-all duration-300 ease-in-out overflow-hidden ${
-          isOpen ? "max-h-96 opacity-100 pb-4" : "max-h-0 opacity-0 pointer-events-none pb-0"
+          isOpen ? "max-h-[28rem] opacity-100 pb-4" : "max-h-0 opacity-0 pointer-events-none pb-0"
         }`}
       >
         <div className={`p-4 rounded-2xl border shadow-xl backdrop-blur-md space-y-4 ${
@@ -197,9 +194,10 @@ export function Navbar() {
             : "bg-white/95 border-slate-200"
         }`}>
           <div className="space-y-3">
-            <a href="#hero" className={`block font-semibold ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-700 hover:text-blue-600"}`} onClick={() => setIsOpen(false)}>{copy.about}</a>
-            <a href="#projects" className={`block font-semibold ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-700 hover:text-blue-600"}`} onClick={() => setIsOpen(false)}>{copy.projects}</a>
-            <a href="#contact" className={`block font-semibold ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-700 hover:text-blue-600"}`} onClick={() => setIsOpen(false)}>{copy.contact}</a>
+            <a href="#presentation" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-slate-700"}`} onClick={() => setIsOpen(false)}>{copy.about}</a>
+            <a href="#journey" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-slate-700"}`} onClick={() => setIsOpen(false)}>{copy.journey}</a>
+            <a href="#projects" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-slate-700"}`} onClick={() => setIsOpen(false)}>{copy.projects}</a>
+            <a href="#contact" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-slate-700"}`} onClick={() => setIsOpen(false)}>{copy.contact}</a>
           </div>
           
           <div className={`flex justify-between items-center pt-3 border-t ${isDark ? "border-slate-800" : "border-slate-200"}`}>
@@ -212,7 +210,7 @@ export function Navbar() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={label}
-                  className={`transition ${isDark ? "text-slate-300 hover:text-blue-400" : "text-slate-600 hover:text-blue-600"}`}
+                  className={`transition hover-accent ${isDark ? "text-slate-300" : "text-slate-600"}`}
                 >
                   <Icon size={20} />
                 </a>
@@ -231,7 +229,7 @@ export function Navbar() {
                   onClick={() => changeLanguage("en")}
                   className={`text-[10px] px-2 py-0.5 rounded font-bold transition ${
                     lang === "en" 
-                      ? "bg-blue-600 text-white" 
+                      ? "bg-accent" 
                       : isDark ? "text-slate-400" : "text-slate-500"
                   }`}
                 >
@@ -241,7 +239,7 @@ export function Navbar() {
                   onClick={() => changeLanguage("pt")}
                   className={`text-[10px] px-2 py-0.5 rounded font-bold transition ${
                     lang === "pt" 
-                      ? "bg-blue-600 text-white" 
+                      ? "bg-accent" 
                       : isDark ? "text-slate-400" : "text-slate-500"
                   }`}
                 >
@@ -254,10 +252,10 @@ export function Navbar() {
               {/* Theme Toggle */}
               <button
                 onClick={toggleTheme}
-                className={`p-1 rounded transition ${
+                className={`p-1 rounded transition text-accent ${
                   isDark 
-                    ? "text-blue-400 hover:bg-slate-900" 
-                    : "text-blue-600 hover:bg-slate-100"
+                    ? "hover:bg-slate-900" 
+                    : "hover:bg-slate-100"
                 }`}
                 aria-label="Toggle Theme"
               >

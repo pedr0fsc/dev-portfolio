@@ -70,7 +70,7 @@
           "year": "2026",
           "month": 9,
           "age": 18,
-          "final": true,
+          "final": false,
           "image": null,
           "banner": null,
           "en": {
@@ -80,6 +80,22 @@
           "pt": {
             "title": "Ainda Fazendo",
             "description": "LEGO, desenho e quebra-cabeça ainda estão na stack, ao lado da engenharia."
+          }
+        },
+        {
+          "year": "2026",
+          "month": 9,
+          "age": 18,
+          "final": true,
+          "image": null,
+          "banner": null,
+          "en": {
+            "title": "VSCO Gallery",
+            "description": "Opened a photography collection on VSCO — a public gallery for the visual side of the work."
+          },
+          "pt": {
+            "title": "Galeria VSCO",
+            "description": "Abri uma coleção de fotografia no VSCO — uma galeria pública para o lado visual do trabalho."
           }
         }
       ]

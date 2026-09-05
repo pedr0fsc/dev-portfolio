@@ -1,4 +1,5 @@
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { SiVsco } from "react-icons/si";
 import { useApp } from "../context/AppContext";
 import content from "../data/content.json";
 
@@ -10,6 +11,7 @@ export function Footer() {
   const socials = [
     { href: "https://github.com/pedr0fsc", icon: FaGithub, label: "GitHub" },
     { href: "https://linkedin.com/in/pedrofsc", icon: FaLinkedin, label: "LinkedIn" },
+    { href: "https://vsco.co/Pedr0fsc/gallery", icon: SiVsco, label: "VSCO" },
     { href: "mailto:pedrodafonsecaschwertner@gmail.com", icon: FaEnvelope, label: "Email" },
   ];
 
@@ -29,10 +31,10 @@ export function Footer() {
               href={href}
               target="_blank"
               rel="noreferrer"
-              className={`p-3 rounded-full transition shadow-sm ${
+                  className={`p-3 rounded-full transition shadow-sm hover-accent ${
                 isDark 
-                  ? "bg-slate-800 text-slate-300 hover:text-blue-400 hover:bg-slate-700" 
-                  : "bg-slate-100 text-slate-600 hover:text-blue-600 hover:bg-slate-200"
+                  ? "bg-slate-800 text-slate-300 hover:bg-slate-700" 
+                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
               }`}
               aria-label={label}
             >
@@ -40,11 +42,18 @@ export function Footer() {
             </a>
           ))}
         </div>
-
-        <p className="text-xs pt-2 text-[var(--text-footer)] opacity-75">
-          © {new Date().getFullYear()} {copy.footerCredits}
-        </p>
       </div>
+
+      <div className="footer-links-divider" aria-hidden="true" />
+
+      <p className="footer-ai-disclaimer">
+        <span className="footer-ai-disclaimer-label">{copy.aiDisclaimerLabel}</span>
+        {copy.aiDisclaimer}
+      </p>
+
+      <p className="text-xs pt-4 text-[var(--text-footer)] opacity-75">
+        © {new Date().getFullYear()} {copy.footerCredits}
+      </p>
     </footer>
   );
 }
