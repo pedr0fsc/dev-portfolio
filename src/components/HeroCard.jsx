@@ -1,18 +1,13 @@
 import { useApp } from "../context/AppContext";
 import content from "../data/content.json";
-import profileImg from "../assets/profile.jpg";
+import heroImg from "../assets/hero.webp";
+import profileImg from "../assets/profile.webp";
 import { WaveDivider } from "./WaveDivider";
 
 export function HeroCard() {
   const { lang } = useApp();
   const copy = content.hero[lang];
-
-  const bgImage =
-    content.hero.backgroundImage === "/src/assets/hero.png" ||
-    content.hero.backgroundImage === "hero.png" ||
-    content.hero.backgroundImage === "@/assets/hero.png"
-      ? heroImg
-      : content.hero.backgroundImage;
+  const bgImage = heroImg;
 
   return (
     <section

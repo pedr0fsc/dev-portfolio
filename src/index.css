@@ -269,30 +269,8 @@ body.project-dialog-open {
     margin-left: 0;
   }
 
-  .graph-commit-copy {
-    flex: 0 1 auto;
-    grid-template-columns: 0fr;
-    opacity: 0;
-  }
-
-  .graph-commit-copy.is-expanded {
-    flex: 1;
-    grid-template-columns: 1fr;
-    opacity: 1;
-    animation: graph-copy-expand 420ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
 }
 
-@keyframes graph-copy-expand {
-  from {
-    opacity: 0;
-    transform: translateX(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
 .project-card {
   display: flex;
   flex-direction: column;
@@ -397,6 +375,8 @@ body.project-dialog-open {
   display: grid;
   place-items: center;
   padding: 1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: rgb(2 6 23 / 72%);
   backdrop-filter: blur(7px);
   animation: project-fade-in 180ms ease-out;
@@ -617,25 +597,38 @@ body.project-dialog-open {
   }
 }
 @media (max-width: 767px) {
+  .project-dialog-backdrop {
+    padding: 0.5rem;
+    place-items: start center;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .project-dialog {
     grid-template-columns: 1fr;
-    height: calc(100vh - 0.75rem);
-    max-height: calc(100vh - 0.75rem);
+    width: min(100%, 40rem);
+    height: auto;
+    max-height: calc(100dvh - 1rem);
+    overflow-x: hidden;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
+
   .project-dialog-media {
     width: 100%;
-    min-height: 18rem;
-    height: 52vh;
-    max-height: 58vh;
+    min-height: 10rem;
+    height: min(36dvh, 14rem);
+    max-height: min(36dvh, 16rem);
     aspect-ratio: auto;
     flex-shrink: 0;
   }
+
   .project-dialog-content {
     overflow-y: visible;
+    height: auto;
     max-height: none;
     padding: 1.25rem;
   }
+
   .project-dialog-heading {
     flex-direction: column;
     padding-right: 2.25rem;

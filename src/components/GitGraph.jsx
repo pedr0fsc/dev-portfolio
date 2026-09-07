@@ -1,27 +1,12 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useApp } from "../context/AppContext";
 import graphData from "../data/graph.json";
-import profileImg from "../assets/profile.jpg";
+import profileImg from "../assets/profile.webp";
 
 const ROW_HEIGHT = 52;
 const LANE_WIDTH = 20;
 const GRAPH_PAD_X = 14;
 const GRAPH_PAD_Y = 8;
-
-function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.innerWidth < 768;
-  });
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return isMobile;
-}
 
 function timeKey(node) {
   return parseInt(node.year, 10) * 12 + (node.month || 0);
@@ -121,7 +106,6 @@ function forkJoinY(anchorRow, childRow) {
 export function GitGraph() {
   const { lang, theme } = useApp();
   const isDark = theme === "dark";
-  const isMobile = useIsMobile();
   const [activeId, setActiveId] = useState(null);
 
   const sectionCopy = graphData.sectionTitle[lang] || graphData.sectionTitle.en;
@@ -219,37 +203,31 @@ export function GitGraph() {
           <div className="overflow-x-auto overscroll-x-contain">
             <div
               className="relative graph-track"
-              style={{ minWidth: `${graphWidth + (isMobile ? (activeId ? 340 : 28) : 420)}px` }}
+              style={{ minWidth: `${graphWidth + 420}px` }}
             >
               {commits.map((commit) => {
                 const isActive = activeId === commit.id;
+                const isStriped = commit.rowIdx % 2 === 0;
+                const rowFill = isActive
+                  ? isDark
+                    ? "rgba(148,163,184,0.12)"
+                    : "rgba(15,23,42,0.05)"
+                  : isStriped
+                    ? isDark
+                      ? "rgba(148,163,184,0.06)"
+                      : "rgba(15,23,42,0.035)"
+                    : "transparent";
                 return (
-                  <button
+                  <div
                     key={`bg-${commit.id}`}
-                    type="button"
                     className="absolute left-0 right-0 z-20 transition-colors duration-150"
                     style={{
                       top: `${GRAPH_PAD_Y + commit.rowIdx * ROW_HEIGHT}px`,
                       height: `${ROW_HEIGHT}px`,
-                      backgroundColor: isActive
-                        ? isDark
-                          ? "rgba(148,163,184,0.12)"
-                          : "rgba(15,23,42,0.05)"
-                        : "transparent",
+                      backgroundColor: rowFill,
                     }}
-                    onMouseEnter={() => {
-                      if (!isMobile) setActiveId(commit.id);
-                    }}
-                    onMouseLeave={() => {
-                      if (!isMobile) setActiveId(null);
-                    }}
-                    onClick={() => {
-                      if (isMobile) {
-                        setActiveId((current) => (current === commit.id ? null : commit.id));
-                      }
-                    }}
-                    aria-expanded={isMobile ? isActive : undefined}
-                    aria-label={`${commit.year} — ${(commit[lang] || commit.en).title}`}
+                    onMouseEnter={() => setActiveId(commit.id)}
+                    onMouseLeave={() => setActiveId(null)}
                   />
                 );
               })}
@@ -316,7 +294,6 @@ export function GitGraph() {
                   {commits.map((commit) => {
                     const copy = commit[lang] || commit.en;
                     const isActive = activeId === commit.id;
-                    const isExpanded = !isMobile || isActive;
                     const label = commit.branchLabel[lang] || commit.branchLabel.en;
 
                     return (
@@ -332,13 +309,11 @@ export function GitGraph() {
                           className="shrink-0 rounded-full"
                           style={{
                             width: "3px",
-                            height: isMobile ? "28px" : "32px",
+                            height: "32px",
                             backgroundColor: commit.branchColor,
                           }}
                         />
-                        <span
-                          className={`graph-commit-copy ${isExpanded ? "is-expanded" : ""}`}
-                        >
+                        <span className="graph-commit-copy">
                           <span className="graph-commit-copy-inner">
                             <span className="flex items-baseline gap-2 min-w-0">
                               <span

@@ -14,7 +14,7 @@
     }
   },
   "hero": {
-    "backgroundImage": "/src/assets/hero.jpg",
+    "backgroundImage": "hero.webp",
     "en": {
       "role": "Systems Developer, Electronic Designer & Robotics Professor",
       "bio": "Computer Science student at PUCPR, Systems Technician, and educational robotics professor. Building web apps, embedded IoT devices, and backend systems — and teaching the next teams to do the same."
