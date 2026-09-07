@@ -4,13 +4,28 @@ import { ChevronDown, ChevronUp, ExternalLink, Play, X } from "lucide-react";
 import { useApp } from "../context/AppContext";
 import projectsData from "../data/projects.json";
 
+const assetFiles = import.meta.glob("../assets/*.{webp,jpg,jpeg,png}", {
+  eager: true,
+  import: "default",
+});
+
+function resolveAssetUrl(value) {
+  if (!value || value.startsWith("http://") || value.startsWith("https://") || value.startsWith("/")) {
+    return value;
+  }
+  const match = Object.entries(assetFiles).find(([path]) => path.endsWith(`/${value}`));
+  return match?.[1] || value;
+}
+
 function ProjectDialog({ project, lang, copy, onClose }) {
   const localized = project[lang] || project.en;
 
   // Build media list including video and images
   const mediaItems = [];
 
-  const rawImages = [project.media.cover, ...(project.media.images || [])].filter(Boolean);
+  const rawImages = [project.media.cover, ...(project.media.images || [])]
+    .map(resolveAssetUrl)
+    .filter(Boolean);
   const uniqueImages = Array.from(new Set(rawImages));
 
   uniqueImages.forEach((imgUrl, idx) => {
@@ -26,14 +41,15 @@ function ProjectDialog({ project, lang, copy, onClose }) {
     mediaItems.push({
       type: "video",
       url: project.media.video.url,
-      poster: project.media.video.poster || project.media.cover,
+      poster: resolveAssetUrl(project.media.video.poster || project.media.cover),
       videoType: project.media.video.type || "video/mp4",
       label: "Video",
     });
   }
 
+  const coverUrl = resolveAssetUrl(project.media.cover);
   const [activeMedia, setActiveMedia] = useState(
-    mediaItems.find((item) => item.type === "image" && item.url === project.media.cover) ||
+    mediaItems.find((item) => item.type === "image" && item.url === coverUrl) ||
       mediaItems[0]
   );
 
@@ -220,7 +236,7 @@ export function ProjectGrid() {
                   >
                     <div className="project-card-banner">
                       <img
-                        src={project.media.cover}
+                        src={resolveAssetUrl(project.media.cover)}
                         alt={project.media.alt[lang] || project.media.alt.en}
                         loading="lazy"
                       />

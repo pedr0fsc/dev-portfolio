@@ -42,7 +42,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/esp32-weather-monitoring",
+        "cover": "esp32-weather-monitoring.webp",
         "alt": {
           "en": "ESP32 weather monitoring system repository preview",
           "pt": "Prévia do repositório do sistema de monitoramento climático ESP32"
@@ -81,18 +81,13 @@
         "demo": null
       },
       "media": {
-        "cover": "/frequency_regulator_1.jpg",
+        "cover": "sound-frequency-regulator.webp",
         "alt": {
           "en": "Sound frequency regulator repository preview",
           "pt": "Prévia do repositório do regulador de frequência sonora"
         },
-        "images": [
-          "/frequency_regulator_1.jpg"
-        ],
-        "video": {
-          "url": "/frequency_regulator_video.mp4",
-          "type": "video/mp4"
-        }
+        "images": [],
+        "video": null
       },
       "en": {
         "title": "Sound Frequency Regulator",
@@ -125,7 +120,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/dev-portfolio",
+        "cover": "dev-portfolio.webp",
         "alt": {
           "en": "Developer portfolio repository preview",
           "pt": "Prévia do repositório do portfólio de desenvolvedor"
@@ -163,7 +158,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/space-shooter",
+        "cover": "space-shooter.webp",
         "alt": {
           "en": "Space shooter game repository preview",
           "pt": "Prévia do repositório do jogo Space Shooter"
@@ -201,7 +196,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/hashzap",
+        "cover": "hashzap.webp",
         "alt": {
           "en": "Hashzap repository preview",
           "pt": "Prévia do repositório Hashzap"
@@ -238,7 +233,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/vending-machine",
+        "cover": "vending-machine.webp",
         "alt": {
           "en": "Vending machine repository preview",
           "pt": "Prévia do repositório da máquina de venda"
@@ -277,7 +272,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/periodic-table",
+        "cover": "periodic-table.webp",
         "alt": {
           "en": "Periodic table repository preview",
           "pt": "Prévia do repositório da tabela periódica"
@@ -317,7 +312,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/american-bullfrog-detector",
+        "cover": "ecora.webp",
         "alt": {
           "en": "American bullfrog detector repository preview",
           "pt": "Prévia do repositório do detector de rã-touro-americana"
@@ -356,7 +351,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/smartek",
+        "cover": "smartek.webp",
         "alt": {
           "en": "Smartek repository preview",
           "pt": "Prévia do repositório Smartek"
@@ -395,7 +390,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/astrocare",
+        "cover": "astrocare.webp",
         "alt": {
           "en": "Astrocare repository preview",
           "pt": "Prévia do repositório Astrocare"
@@ -434,12 +429,14 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/mp3-analyzer",
+        "cover": "mp3-analiser_1.webp",
         "alt": {
           "en": "MP3 analyzer repository preview",
           "pt": "Prévia do repositório do analisador de MP3"
         },
-        "images": [],
+        "images": [
+          "mp3-analiser_2.webp"
+        ],
         "video": null
       },
       "en": {
@@ -471,7 +468,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/programa-de-analise-de-alimentos",
+        "cover": "food-system.webp",
         "alt": {
           "en": "Food analysis program repository preview",
           "pt": "Prévia do repositório do programa de análise de alimentos"
@@ -509,7 +506,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/maratona-de-programacao-sbc",
+        "cover": "maratona_sbc.webp",
         "alt": {
           "en": "SBC programming marathon repository preview",
           "pt": "Prévia do repositório da maratona de programação SBC"
@@ -549,7 +546,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/building-automation",
+        "cover": "building-automation.webp",
         "alt": {
           "en": "Building automation repository preview",
           "pt": "Prévia do repositório de automação predial"
@@ -586,7 +583,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/data-storage-in-files",
+        "cover": "data-storage-in-files.webp",
         "alt": {
           "en": "Data storage in files repository preview",
           "pt": "Prévia do repositório de armazenamento de dados em arquivos"
@@ -623,7 +620,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/useful-dev-scripts",
+        "cover": "useful-dev-scripts.webp",
         "alt": {
           "en": "Useful development scripts repository preview",
           "pt": "Prévia do repositório de scripts úteis de desenvolvimento"
@@ -663,7 +660,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/garage-mqtt-system",
+        "cover": "mqtt-garage-system.webp",
         "alt": {
           "en": "Garage MQTT system repository preview",
           "pt": "Prévia do repositório do sistema de garagem MQTT"
@@ -703,7 +700,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/esp32-client-server-system",
+        "cover": "esp32-client-server-system.webp",
         "alt": {
           "en": "ESP32 client-server system repository preview",
           "pt": "Prévia do repositório do sistema cliente-servidor ESP32"
@@ -747,12 +744,16 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/projeto-de-extensao-sindrome_do_x_fragil",
+        "cover": "sxf_home.webp",
         "alt": {
           "en": "Fragile X extension project repository preview",
           "pt": "Prévia do repositório do projeto de extensão sobre síndrome do X frágil"
         },
-        "images": [],
+        "images": [
+          "sxf_login.webp",
+          "sxf_admin.webp",
+          "sxf_medicos.webp"
+        ],
         "video": null
       },
       "en": {
@@ -785,7 +786,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/naval-battle",
+        "cover": "naval-battle.webp",
         "alt": {
           "en": "Naval battle repository preview",
           "pt": "Prévia do repositório de batalha naval"
@@ -824,7 +825,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/turn-signal-system",
+        "cover": "turn-signal-system.webp",
         "alt": {
           "en": "Automotive turn-signal system repository preview",
           "pt": "Prévia do repositório do sistema automotivo de pisca-pisca"
@@ -863,7 +864,7 @@
         "demo": null
       },
       "media": {
-        "cover": "https://opengraph.githubassets.com/1/pedr0fsc/pedr0fsc",
+        "cover": "dynamic-github-profile.webp",
         "alt": {
           "en": "Dynamic GitHub profile repository preview",
           "pt": "Prévia do repositório do perfil dinâmico do GitHub"

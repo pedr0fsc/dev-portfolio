@@ -93,13 +93,13 @@
       "letsConnect": "Let's Connect",
       "footerCredits": "Pedro da Fonseca Schwertner. All rights reserved.",
       "aiDisclaimerLabel": "AI disclaimer",
-      "aiDisclaimer": "I will wirte later"
+      "aiDisclaimer": "Generative AI was used in the production of this portfolio as a tool for structural generation, responsiveness, and task automation. All text, images, designs, and animations are original works."
     },
     "pt": {
       "letsConnect": "Vamos nos conectar",
       "footerCredits": "Pedro da Fonseca Schwertner. Todos os direitos reservados.",
       "aiDisclaimerLabel": "Aviso de IA",
-      "aiDisclaimer": "I will wirte later"
+      "aiDisclaimer": "IA generativa foi usada na produção desse portfólio como ferramenta para geração estrutural, responsividade e automação de tarefas. Todo texto, imagem, design e animação possui autoria própria"
     }
   }
 }
