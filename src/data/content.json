@@ -28,10 +28,10 @@
     "en": {
       "badge": "About Me",
       "heading": "Engineering Systems from Silicon to the Web",
-      "tagline": "Computer Science student at PUCPR, systems technician, robotics professor, and academic leader. Blending embedded hardware (C++, ESP32, FreeRTOS) with full-stack web applications and backend automation.",
+      "tagline": "Computer Science student at PUCPR, systems technician, robotics teacher, and academic leader. Blending embedded hardware (C++, ESP32, FreeRTOS) with full-stack web applications and backend automation.",
       "story": [
         "I am Pedro da Fonseca Schwertner, a Computer Science undergraduate at PUCPR and Systems Development technician based in Curitiba, Brazil. Driven by analytical problem solving, my experience bridges low-level embedded hardware and C++ firmware with modern full-stack web engineering (React, TypeScript, Tailwind) and automated backend pipelines in Python and Java.",
-        "I teach educational robotics as a professor, mentor, and technician — first with Team Little Wizards at SESI Portão, and now with Osíris (FTC mentor and FLL technician). I also compete: Ampharos reached the FTC national stage in Brasília after a regional 1st place, and I represent PUCPR on the SBC Programming Marathon team. As President of CABCC I refounded the Computer Science Academic Center; on the research side I work on a PIBITI intelligent BMS for second-life lithium-ion batteries, and I helped ship a check-in system for a Fragile X diagnostic institute. Off the bench I keep a photography collection on VSCO — a visual gallery of the same making that shows up in drawing, LEGO, and hardware."
+        "I teach educational robotics as a teacher, mentor, and technician — first with Team Little Wizards at SESI Portão, and now with Osíris (FTC mentor and FLL technician). I also compete: Ampharos reached the FTC national stage in Brasília after a regional 1st place, and I represent PUCPR on the SBC Programming Marathon team. As President of CABCC I refounded the Computer Science Academic Center; on the research side I work on a PIBITI intelligent BMS for second-life lithium-ion batteries, and I helped ship a check-in system for a Fragile X diagnostic institute. Off the bench I keep a photography collection on VSCO — a visual gallery of the same making that shows up in drawing, LEGO, and hardware."
       ],
       "pillars": [
         {
@@ -44,13 +44,13 @@
         },
         {
           "title": "Teaching, Leadership & Competition",
-          "description": "Robotics professor and mentor (Little Wizards, Osíris FTC/FLL), President of CABCC PUCPR, and competitive programming on the SBC marathon team."
+          "description": "Robotics teacher and mentor (Little Wizards, Osíris FTC/FLL), President of CABCC PUCPR, and competitive programming on the SBC marathon team."
         }
       ],
       "highlights": [
         { "label": "Education", "value": "B.S. in Computer Science @ PUCPR" },
         { "label": "Leadership", "value": "President of CABCC (PUCPR)" },
-        { "label": "Robotics", "value": "Professor, mentor & technician" },
+        { "label": "Robotics", "value": "Teacher, mentor & technician" },
         { "label": "Core Stack", "value": "C++, Java, Python, TypeScript, React" },
         { "label": "Location", "value": "Curitiba, PR — Brazil" },
         { "label": "Gallery", "value": "VSCO @Pedr0fsc", "href": "https://vsco.co/Pedr0fsc/gallery" }
