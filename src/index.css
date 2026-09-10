@@ -71,6 +71,22 @@ body.project-dialog-open {
   box-shadow: 0 12px 32px rgb(15 23 42 / 14%);
 }
 
+.site-navbar.is-over-hero {
+  --text-navbar: #f8fafc;
+  --divider: rgb(255 255 255 / 35%);
+  color: #f8fafc;
+}
+
+.site-navbar.is-over-hero .navbar-icon {
+  color: #f8fafc;
+}
+
+html:not(.dark) .site-navbar.is-over-hero.is-scrolled {
+  background: rgb(2 6 23 / 55%);
+  border-color: transparent;
+  color: #f8fafc;
+}
+
 .dark .site-navbar.is-scrolled {
   box-shadow: 0 14px 36px rgb(2 6 23 / 48%);
 }
@@ -79,6 +95,7 @@ body.project-dialog-open {
   display: flex;
   align-items: center;
   height: 1.75rem;
+  overflow: visible;
 }
 
 .navbar-vdiv {
@@ -112,7 +129,8 @@ body.project-dialog-open {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-inline: 0.9rem;
+  padding-inline: 0.9rem 0;
+  overflow: visible;
 }
 
 .navbar-settings-slot button {
@@ -143,39 +161,17 @@ body.project-dialog-open {
 }
 
 .wave-divider {
-  overflow: visible;
+  overflow: hidden;
+  line-height: 0;
 }
 
-.wave-crest-shadow {
-  opacity: 0.14;
-  filter: blur(7px);
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: wave-crest-breathe 3.8s ease-in-out infinite;
+.wave-divider svg {
+  display: block;
+  overflow: hidden;
 }
 
-.wave-crest-shadow:nth-child(2) {
-  animation-delay: 0.55s;
-}
-
-.wave-crest-shadow:nth-child(3) {
-  animation-delay: 1.1s;
-}
-
-.wave-crest-shadow:nth-child(4) {
-  animation-delay: 1.65s;
-}
-
-@keyframes wave-crest-breathe {
-  0%,
-  100% {
-    opacity: 0.1;
-    transform: scale(0.92);
-  }
-  50% {
-    opacity: 0.3;
-    transform: scale(1.12);
-  }
+.wave-divider-shadow {
+  fill: var(--wave-shadow);
 }
 
 .graph-commit-copy {
@@ -283,10 +279,161 @@ body.project-dialog-open {
     border-color 300ms ease;
 }
 .project-card:hover,
-.project-card:focus-within {
+.project-card:focus-within,
+.highlight-link-card:hover,
+.highlight-link-card:focus-visible {
   transform: translateY(-0.4rem) scale(1.02);
   box-shadow: 0 20px 40px rgb(15 23 42 / 18%);
   border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+.highlight-link-card {
+  transform: translateZ(0) translateY(0) scale(1);
+  box-shadow: 0 4px 6px rgb(15 23 42 / 10%);
+  cursor: pointer;
+  transition:
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 300ms ease;
+}
+.highlight-link-card:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+.highlight-icon-wrap {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+.gallery-cue {
+  display: none;
+}
+.gallery-cue-spark {
+  display: none;
+}
+@media (max-width: 767px) {
+  .gallery-cue {
+    position: absolute;
+    right: calc(100% + 0.45rem);
+    top: 50%;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.32rem 0.6rem;
+    border: 1px solid color-mix(in srgb, var(--accent) 55%, white 20%);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 18%, rgb(15 23 42 / 88%));
+    color: white;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-50%) translateX(1.1rem) scale(0.18);
+    transform-origin: right center;
+    box-shadow:
+      0 10px 24px rgb(15 23 42 / 28%),
+      0 0 18px color-mix(in srgb, var(--accent) 35%, transparent);
+    backdrop-filter: blur(10px);
+  }
+  .gallery-cue::after {
+    position: absolute;
+    right: -0.28rem;
+    top: 50%;
+    width: 0.42rem;
+    height: 0.42rem;
+    border-right: 1px solid color-mix(in srgb, var(--accent) 55%, white 20%);
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 55%, white 20%);
+    background: inherit;
+    content: "";
+    transform: translateY(-50%) rotate(-45deg);
+  }
+  .gallery-cue.is-visible {
+    visibility: visible;
+    animation: gallery-cue-unfurl 900ms cubic-bezier(0.16, 0.84, 0.32, 1.2) forwards;
+  }
+  .gallery-cue-spark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    display: block;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .highlight-icon-wrap.is-cue-visible .accent-chip {
+    animation: gallery-icon-bloom 700ms ease;
+  }
+  .highlight-icon-wrap.is-cue-visible .gallery-cue-spark:nth-child(1) {
+    animation: gallery-spark 720ms ease-out 80ms both;
+    --dx: -18px;
+    --dy: -16px;
+  }
+  .highlight-icon-wrap.is-cue-visible .gallery-cue-spark:nth-child(2) {
+    animation: gallery-spark 720ms ease-out 140ms both;
+    --dx: 14px;
+    --dy: -18px;
+  }
+  .highlight-icon-wrap.is-cue-visible .gallery-cue-spark:nth-child(3) {
+    animation: gallery-spark 720ms ease-out 200ms both;
+    --dx: -12px;
+    --dy: 16px;
+  }
+}
+
+@keyframes gallery-cue-unfurl {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(-50%) translateX(1.15rem) scale(0.12);
+  }
+  58% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(-50%) translateX(-0.08rem) scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(-50%) translateX(0) scale(1);
+  }
+}
+
+@keyframes gallery-icon-bloom {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.16);
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes gallery-spark {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  28% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.65);
+  }
 }
 .project-card-open {
   display: flex;
@@ -684,10 +831,19 @@ body.project-dialog-open {
   .project-dialog-media img,
   .project-card,
   .project-card-open-cue,
-  .wave-crest-shadow,
+  .highlight-link-card,
+  .gallery-cue,
+  .gallery-cue-spark,
+  .wave-divider-shadow,
   .graph-commit-copy {
     animation: none;
     transition: none;
+  }
+  .gallery-cue.is-visible {
+    opacity: 1;
+    visibility: visible;
+    filter: none;
+    transform: translateY(-50%) translateX(0) scale(1);
   }
 }
 

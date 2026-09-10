@@ -13,7 +13,7 @@ export default function App() {
       <HeroCard />
       <Presentation />
       {/* Added mb-[-2.5px] and relative positioning to prevent 1px sub-pixel rendering gaps at the footer boundary */}
-      <WaveDivider color="var(--bg-footer)" bgColor="var(--bg-projects)" flip={true} className="mb-[-2.5px] relative z-10" />
+      <WaveDivider color="var(--bg-hero)" bgColor="var(--bg-projects)" flip={true} className="mb-[-2.5px] relative z-10" />
       <GitGraph />
       <WaveDivider color="var(--bg-projects)" bgColor="var(--bg-hero)" flip={true} />
       <ProjectGrid />

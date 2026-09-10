@@ -197,7 +197,7 @@ export function GitGraph() {
 
         <div
           className={`rounded-xl overflow-hidden border ${
-            isDark ? "border-slate-800 bg-slate-950/40" : "border-slate-200 bg-white/70"
+            isDark ? "border-slate-800 bg-slate-950/40" : "border-[var(--border-card)] bg-[var(--bg-card)]"
           }`}
         >
           <div className="overflow-x-auto overscroll-x-contain">
@@ -211,11 +211,11 @@ export function GitGraph() {
                 const rowFill = isActive
                   ? isDark
                     ? "rgba(148,163,184,0.12)"
-                    : "rgba(15,23,42,0.05)"
+                    : "rgba(37,99,235,0.08)"
                   : isStriped
                     ? isDark
                       ? "rgba(148,163,184,0.06)"
-                      : "rgba(15,23,42,0.035)"
+                      : "rgba(37,99,235,0.045)"
                     : "transparent";
                 return (
                   <div
@@ -263,7 +263,7 @@ export function GitGraph() {
                           cx={x}
                           cy={y}
                           r={size / 2 + 1.25}
-                          fill={isDark ? "#0b1220" : "#ffffff"}
+                          fill={isDark ? "#0b1220" : "var(--bg-card)"}
                           stroke={commit.branchColor}
                           strokeWidth="2.25"
                         />
@@ -318,7 +318,7 @@ export function GitGraph() {
                             <span className="flex items-baseline gap-2 min-w-0">
                               <span
                                 className={`text-sm sm:text-[15px] font-semibold truncate ${
-                                  isDark ? "text-slate-100" : "text-slate-900"
+                                  isDark ? "text-slate-100" : "text-[var(--text-hero-title)]"
                                 }`}
                               >
                                 {copy.title}
@@ -331,7 +331,7 @@ export function GitGraph() {
                               </span>
                               <span
                                 className={`text-[11px] shrink-0 tabular-nums ${
-                                  isDark ? "text-slate-500" : "text-slate-400"
+                                  isDark ? "text-slate-500" : "text-[var(--text-muted)]"
                                 }`}
                               >
                                 {commit.year}
@@ -342,10 +342,10 @@ export function GitGraph() {
                                 isActive
                                   ? isDark
                                     ? "text-slate-300"
-                                    : "text-slate-600"
+                                    : "text-[var(--text-hero)]"
                                   : isDark
                                     ? "text-slate-500"
-                                    : "text-slate-500"
+                                    : "text-[var(--text-muted)]"
                               }`}
                             >
                               {copy.description}

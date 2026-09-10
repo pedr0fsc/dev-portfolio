@@ -34,7 +34,7 @@ export function Footer() {
                   className={`p-3 rounded-full transition shadow-sm hover-accent ${
                 isDark 
                   ? "bg-slate-800 text-slate-300 hover:bg-slate-700" 
-                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  : "bg-[var(--accent-soft)] text-[var(--accent)] hover:bg-[var(--accent-ring)]"
               }`}
               aria-label={label}
             >

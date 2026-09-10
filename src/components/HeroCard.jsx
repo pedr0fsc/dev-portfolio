@@ -19,10 +19,10 @@ export function HeroCard() {
           <img
             src={bgImage}
             alt=""
-            className="w-full h-full object-cover object-center scale-105"
+            className="w-full h-full object-cover object-center"
           />
           <div
-            className="absolute inset-0 transition-colors duration-300 backdrop-blur-[2px]"
+            className="absolute inset-0"
             style={{ background: "var(--bg-hero-overlay)" }}
           />
         </div>
@@ -44,12 +44,12 @@ export function HeroCard() {
 
           <h1
             id="hero-title"
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[var(--text-hero-title)] leading-[1.08] font-heading"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] font-heading"
           >
             {copy.role}
           </h1>
 
-          <p className="mt-5 text-base sm:text-lg md:text-xl leading-relaxed text-[var(--text-hero)] font-normal opacity-90">
+          <p className="hero-bio mt-5 text-base sm:text-lg md:text-xl leading-relaxed text-white/90 font-normal">
             {copy.bio}
           </p>
         </div>

@@ -1,4 +1,5 @@
-import { Cpu, Globe, Award, Sparkles, Terminal, GraduationCap, Users, Bot, Code2, MapPin, Camera } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Cpu, Globe, Award, Terminal, GraduationCap, Users, Bot, Code2, MapPin, Camera } from "lucide-react";
 import { useApp } from "../context/AppContext";
 import content from "../data/content.json";
 
@@ -9,6 +10,43 @@ export function Presentation() {
   const { lang, theme } = useApp();
   const isDark = theme === "dark";
   const copy = content.presentation[lang];
+  const galleryLinkRef = useRef(null);
+  const [showGalleryCue, setShowGalleryCue] = useState(false);
+
+  useEffect(() => {
+    const el = galleryLinkRef.current;
+    if (!el) return;
+
+    const mobileQuery = window.matchMedia("(max-width: 767px)");
+    let observer;
+
+    const syncObserver = () => {
+      observer?.disconnect();
+      if (!mobileQuery.matches) {
+        setShowGalleryCue(false);
+        return;
+      }
+
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          setShowGalleryCue(entry.isIntersecting);
+        },
+        {
+          threshold: 0,
+          rootMargin: "0px 0px -10% 0px",
+        }
+      );
+      observer.observe(el);
+    };
+
+    syncObserver();
+    mobileQuery.addEventListener("change", syncObserver);
+
+    return () => {
+      observer?.disconnect();
+      mobileQuery.removeEventListener("change", syncObserver);
+    };
+  }, []);
 
   return (
     <section 
@@ -23,7 +61,7 @@ export function Presentation() {
             {copy.heading}
           </h2>
 
-          <p className="text-base sm:text-lg text-[var(--text-projects)] opacity-85 leading-relaxed">
+          <p className="text-base sm:text-lg text-[var(--text-projects)] leading-relaxed">
             {copy.tagline}
           </p>
         </div>
@@ -34,7 +72,7 @@ export function Presentation() {
           <div className={`lg:col-span-7 p-6 sm:p-8 rounded-2xl border shadow-sm flex flex-col justify-center space-y-4 ${
             isDark 
               ? "bg-slate-900/70 border-slate-800" 
-              : "bg-white/90 border-slate-200"
+              : "bg-[var(--bg-card)] border-[var(--border-card)]"
           }`}>
             <div className="flex items-center gap-2 text-accent mb-1">
               <Terminal size={20} />
@@ -42,7 +80,7 @@ export function Presentation() {
             </div>
 
             {copy.story.map((paragraph, idx) => (
-              <p key={idx} className="text-sm sm:text-base leading-relaxed text-[var(--text-projects)] opacity-90">
+              <p key={idx} className="text-sm sm:text-base leading-relaxed text-[var(--text-projects)]">
                 {paragraph}
               </p>
             ))}
@@ -55,43 +93,53 @@ export function Presentation() {
               const cardClass = `p-4 sm:p-4.5 rounded-xl border flex items-center justify-between gap-4 ${
                 isDark
                   ? "bg-slate-900/50 border-slate-800/80"
-                  : "bg-white/80 border-slate-200"
+                  : "bg-[var(--bg-card)] border-[var(--border-card)]"
               }`;
-              const inner = (
-                <>
-                  <div className="space-y-0.5 min-w-0">
-                    <span className={`text-[11px] font-semibold uppercase tracking-wider block ${
-                      isDark ? "text-slate-400" : "text-slate-500"
-                    }`}>
-                      {item.label}
-                    </span>
-                    <h3 className="text-sm sm:text-base font-bold text-[var(--text-projects-title)] font-heading truncate">
-                      {item.value}
-                    </h3>
-                  </div>
-                  <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 accent-chip">
-                    <HighlightIcon size={18} />
-                  </div>
-                </>
+              const labelBlock = (
+                <div className="space-y-0.5 min-w-0">
+                  <span className={`text-[11px] font-semibold uppercase tracking-wider block ${
+                    isDark ? "text-slate-400" : "text-[var(--text-muted)]"
+                  }`}>
+                    {item.label}
+                  </span>
+                  <h3 className="text-sm sm:text-base font-bold text-[var(--text-projects-title)] font-heading truncate">
+                    {item.value}
+                  </h3>
+                </div>
               );
 
               if (item.href) {
                 return (
                   <a
                     key={idx}
+                    ref={galleryLinkRef}
                     href={item.href}
                     target="_blank"
                     rel="noreferrer"
-                    className={cardClass}
+                    className={`${cardClass} highlight-link-card`}
                   >
-                    {inner}
+                    {labelBlock}
+                    <div className={`highlight-icon-wrap ${showGalleryCue ? "is-cue-visible" : ""}`}>
+                      <span className="gallery-cue-spark" aria-hidden="true" />
+                      <span className="gallery-cue-spark" aria-hidden="true" />
+                      <span className="gallery-cue-spark" aria-hidden="true" />
+                      <span className={`gallery-cue ${showGalleryCue ? "is-visible" : ""}`}>
+                        {copy.galleryCue}
+                      </span>
+                      <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 accent-chip">
+                        <HighlightIcon size={18} />
+                      </div>
+                    </div>
                   </a>
                 );
               }
 
               return (
                 <div key={idx} className={cardClass}>
-                  {inner}
+                  {labelBlock}
+                  <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 accent-chip">
+                    <HighlightIcon size={18} />
+                  </div>
                 </div>
               );
             })}
@@ -108,7 +156,7 @@ export function Presentation() {
                 className={`p-6 sm:p-7 rounded-2xl border shadow-sm flex flex-col ${
                   isDark
                     ? "bg-slate-900/80 border-slate-800"
-                    : "bg-white border-slate-200"
+                    : "bg-[var(--bg-card)] border-[var(--border-card)]"
                 }`}
               >
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 accent-chip">
@@ -119,7 +167,7 @@ export function Presentation() {
                   {pillar.title}
                 </h3>
 
-                <p className="text-sm leading-relaxed text-[var(--text-projects)] opacity-80 mt-auto">
+                <p className="text-sm leading-relaxed text-[var(--text-projects)] mt-auto">
                   {pillar.description}
                 </p>
               </div>

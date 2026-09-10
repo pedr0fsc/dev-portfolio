@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { Menu, X, Settings, Sun, Moon } from "lucide-react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { SiVsco } from "react-icons/si";
@@ -9,24 +9,35 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOverHero, setIsOverHero] = useState(true);
   const { theme, toggleTheme, lang, changeLanguage } = useApp();
   const settingsRef = useRef(null);
+  const [settingsMenuPos, setSettingsMenuPos] = useState({ top: 0, left: 0 });
   const isDark = theme === "dark";
+  const lightOnHero = !isDark && isOverHero;
   
   const copy = content.navbar[lang];
 
-  // Show the bar after the first scroll — still in the hero, before the main title is covered
   useEffect(() => {
-    const handleScroll = () => {
+    const syncNavState = () => {
       setIsScrolled(window.scrollY > 10);
+      const hero = document.getElementById("hero");
+      if (!hero) {
+        setIsOverHero(false);
+        return;
+      }
+      setIsOverHero(hero.getBoundingClientRect().bottom > 64);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", syncNavState, { passive: true });
+    window.addEventListener("resize", syncNavState);
+    syncNavState();
+    return () => {
+      window.removeEventListener("scroll", syncNavState);
+      window.removeEventListener("resize", syncNavState);
+    };
   }, []);
 
-  // Close dropdown on click outside
   useEffect(() => {
     function handleClickOutside(event) {
       if (settingsRef.current && !settingsRef.current.contains(event.target)) {
@@ -36,6 +47,34 @@ export function Navbar() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  useLayoutEffect(() => {
+    if (!isSettingsOpen) return;
+
+    const placeMenu = () => {
+      const trigger = settingsRef.current?.querySelector("button");
+      if (!trigger) return;
+
+      const rect = trigger.getBoundingClientRect();
+      const menuWidth = 176;
+      const gap = 8;
+      const viewportPad = 12;
+      const left = Math.max(
+        viewportPad,
+        Math.min(rect.right - menuWidth, window.innerWidth - menuWidth - viewportPad)
+      );
+      const top = rect.bottom + gap;
+      setSettingsMenuPos({ top, left });
+    };
+
+    placeMenu();
+    window.addEventListener("resize", placeMenu);
+    window.addEventListener("scroll", placeMenu, true);
+    return () => {
+      window.removeEventListener("resize", placeMenu);
+      window.removeEventListener("scroll", placeMenu, true);
+    };
+  }, [isSettingsOpen]);
 
   const socialLinks = [
     { href: "https://github.com/pedr0fsc", icon: FaGithub, label: "GitHub" },
@@ -47,15 +86,15 @@ export function Navbar() {
   return (
     <nav
       className={`site-navbar fixed top-0 left-0 right-0 z-50 w-full pointer-events-auto border-b ${
-        isScrolled ? "is-scrolled" : "bg-transparent border-transparent"
-      }`}
+        isOverHero ? "is-over-hero" : ""
+      } ${isScrolled ? "is-scrolled" : "bg-transparent border-transparent"}`}
     >
       <div className="navbar-inner max-w-6xl mx-auto px-4 py-3 flex items-center">
         {/* Brand */}
         <div className="navbar-brand flex shrink-0 items-center space-x-1.5 font-bold text-lg font-heading">
           <a href="#hero" className="flex items-center space-x-1.5">
             <span className="text-accent">&lt;</span>
-            <span className={isDark ? "text-white font-extrabold" : "text-slate-900 font-extrabold"}>pedr0fsc</span>
+            <span className={isDark || isOverHero ? "text-white font-extrabold" : "text-[var(--text-navbar)] font-extrabold"}>pedr0fsc</span>
             <span className="text-accent">/&gt;</span>
           </a>
         </div>
@@ -65,7 +104,7 @@ export function Navbar() {
           <a
             href="#presentation"
             className={`transition font-semibold text-sm hover-accent ${
-              isDark ? "text-slate-300" : "text-slate-700"
+              isDark || isOverHero ? "text-slate-200" : "text-[var(--text-navbar)]"
             }`}
           >
             {copy.about}
@@ -73,7 +112,7 @@ export function Navbar() {
           <a
             href="#journey"
             className={`transition font-semibold text-sm hover-accent ${
-              isDark ? "text-slate-300" : "text-slate-700"
+              isDark || isOverHero ? "text-slate-200" : "text-[var(--text-navbar)]"
             }`}
           >
             {copy.journey}
@@ -81,7 +120,7 @@ export function Navbar() {
           <a
             href="#projects"
             className={`transition font-semibold text-sm hover-accent ${
-              isDark ? "text-slate-300" : "text-slate-700"
+              isDark || isOverHero ? "text-slate-200" : "text-[var(--text-navbar)]"
             }`}
           >
             {copy.projects}
@@ -89,7 +128,7 @@ export function Navbar() {
           <a
             href="#contact"
             className={`transition font-semibold text-sm hover-accent ${
-              isDark ? "text-slate-300" : "text-slate-700"
+              isDark || isOverHero ? "text-slate-200" : "text-[var(--text-navbar)]"
             }`}
           >
             {copy.contact}
@@ -116,7 +155,9 @@ export function Navbar() {
               <button
                 onClick={() => setIsSettingsOpen(!isSettingsOpen)}
                 className={`transition rounded-md hover-accent ${
-                  isDark ? "text-slate-300 hover:bg-slate-800/40" : "text-slate-600 hover:bg-slate-200/50"
+                  isDark || lightOnHero
+                    ? "text-slate-200 hover:bg-white/10"
+                    : "text-slate-600 hover:bg-slate-200/50"
                 }`}
                 aria-label="Settings"
               >
@@ -124,11 +165,14 @@ export function Navbar() {
               </button>
 
             {isSettingsOpen && (
-              <div className={`absolute right-0 mt-2 w-36 border rounded-xl shadow-2xl p-2.5 flex flex-col gap-2 backdrop-blur-md ${
+              <div
+                className={`fixed z-[60] w-44 border rounded-xl shadow-2xl p-2.5 flex flex-col gap-2 backdrop-blur-md ${
                 isDark 
                   ? "bg-slate-900/95 border-slate-800 text-white" 
-                  : "bg-white/95 border-slate-200 text-slate-800"
-              }`}>
+                  : "bg-white border-[var(--border-card)] text-slate-800"
+              }`}
+                style={{ top: settingsMenuPos.top, left: settingsMenuPos.left }}
+              >
                 {/* Theme selection row */}
                 <div className={`flex items-center justify-between border-b pb-2 ${isDark ? "border-slate-800" : "border-slate-100"}`}>
                   <span className={`text-xs font-semibold ${isDark ? "text-slate-400" : "text-slate-500"}`}>{lang === "pt" ? "Tema" : "Theme"}</span>
@@ -174,7 +218,7 @@ export function Navbar() {
         {/* Mobile Menu Button */}
         <button 
           className={`navbar-menu-toggle ml-auto shrink-0 md:hidden transition ${
-            isDark ? "text-slate-200 hover:text-white" : "text-slate-700 hover:text-slate-900"
+            isDark || isOverHero ? "text-slate-200 hover:text-white" : "text-slate-700 hover:text-slate-900"
           }`} 
           onClick={() => setIsOpen(!isOpen)}
         >
@@ -191,13 +235,13 @@ export function Navbar() {
         <div className={`p-4 rounded-2xl border shadow-xl backdrop-blur-md space-y-4 ${
           isDark
             ? "bg-slate-900/95 border-slate-800"
-            : "bg-white/95 border-slate-200"
+            : "bg-[var(--bg-elevated)] border-[var(--border-card)]"
         }`}>
           <div className="space-y-3">
-            <a href="#presentation" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-slate-700"}`} onClick={() => setIsOpen(false)}>{copy.about}</a>
-            <a href="#journey" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-slate-700"}`} onClick={() => setIsOpen(false)}>{copy.journey}</a>
-            <a href="#projects" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-slate-700"}`} onClick={() => setIsOpen(false)}>{copy.projects}</a>
-            <a href="#contact" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-slate-700"}`} onClick={() => setIsOpen(false)}>{copy.contact}</a>
+            <a href="#presentation" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-[var(--text-navbar)]"}`} onClick={() => setIsOpen(false)}>{copy.about}</a>
+            <a href="#journey" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-[var(--text-navbar)]"}`} onClick={() => setIsOpen(false)}>{copy.journey}</a>
+            <a href="#projects" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-[var(--text-navbar)]"}`} onClick={() => setIsOpen(false)}>{copy.projects}</a>
+            <a href="#contact" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-[var(--text-navbar)]"}`} onClick={() => setIsOpen(false)}>{copy.contact}</a>
           </div>
           
           <div className={`flex justify-between items-center pt-3 border-t ${isDark ? "border-slate-800" : "border-slate-200"}`}>

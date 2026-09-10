@@ -250,7 +250,7 @@ export function ProjectGrid() {
                       >
                         {project.tech.join(" · ")}
                       </p>
-                      <p className="text-sm mt-3 text-[var(--text-projects)] opacity-90">
+                      <p className="text-sm mt-3 text-[var(--text-projects)]">
                         {localized.summary}
                       </p>
                     </div>

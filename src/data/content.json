@@ -54,7 +54,8 @@
         { "label": "Core Stack", "value": "C++, Java, Python, TypeScript, React" },
         { "label": "Location", "value": "Curitiba, PR — Brazil" },
         { "label": "Gallery", "value": "VSCO @Pedr0fsc", "href": "https://vsco.co/Pedr0fsc/gallery" }
-      ]
+      ],
+      "galleryCue": "Click here to see"
     },
     "pt": {
       "badge": "Sobre Mim",
@@ -85,7 +86,8 @@
         { "label": "Stack Principal", "value": "C++, Java, Python, TypeScript, React" },
         { "label": "Localização", "value": "Curitiba, PR — Brasil" },
         { "label": "Galeria", "value": "VSCO @Pedr0fsc", "href": "https://vsco.co/Pedr0fsc/gallery" }
-      ]
+      ],
+      "galleryCue": "Clique aqui para ver"
     }
   },
   "footer": {
