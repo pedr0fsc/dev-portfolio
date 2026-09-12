@@ -31,7 +31,20 @@ function buildCommits(branches) {
     });
   });
 
+  let lastMainId = null;
+  let lastMainNodeIndex = -1;
+  commits.forEach((commit) => {
+    if (commit.branchId === "main" && commit.nodeIndex > lastMainNodeIndex) {
+      lastMainNodeIndex = commit.nodeIndex;
+      lastMainId = commit.id;
+    }
+  });
+
   commits.sort((a, b) => {
+    const aIsPresent = a.id === lastMainId;
+    const bIsPresent = b.id === lastMainId;
+    if (aIsPresent !== bIsPresent) return aIsPresent ? 1 : -1;
+
     const t = timeKey(a) - timeKey(b);
     if (t !== 0) return t;
     if (a.branchIndex !== b.branchIndex) return a.branchIndex - b.branchIndex;
