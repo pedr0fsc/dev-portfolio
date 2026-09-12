@@ -2,31 +2,33 @@
   "navbar": {
     "en": {
       "about": "About",
+      "hall": "Hall",
       "journey": "Journey",
       "projects": "Projects",
       "contact": "Contact"
     },
     "pt": {
       "about": "Sobre",
+      "hall": "Galeria",
       "journey": "Jornada",
       "projects": "Projetos",
       "contact": "Contato"
     }
   },
   "hero": {
-    "backgroundImage": "hero.webp",
     "en": {
+      "greeting": "Hello, I'm Pedro",
       "role": "Systems Developer, Electronic Designer & Robotics Professor",
       "bio": "Computer Science student at PUCPR, Systems Technician, and educational robotics professor. Building web apps, embedded IoT devices, and backend systems — and teaching the next teams to do the same."
     },
     "pt": {
+      "greeting": "Olá, eu sou Pedro",
       "role": "Desenvolvedor de Sistemas, Projetista Eletrônico & Professor de Robótica",
       "bio": "Estudante de Ciência da Computação na PUCPR, Técnico em Sistemas e professor de robótica educacional. Criando aplicações web, dispositivos IoT embarcados e backends — e formando as próximas equipes."
     }
   },
   "presentation": {
     "en": {
-      "badge": "About Me",
       "heading": "Engineering Systems from Silicon to the Web",
       "tagline": "Computer Science student at PUCPR, systems technician, robotics teacher, and academic leader. Blending embedded hardware (C++, ESP32, FreeRTOS) with full-stack web applications and backend automation.",
       "story": [
@@ -58,7 +60,6 @@
       "galleryCue": "Click here to see"
     },
     "pt": {
-      "badge": "Sobre Mim",
       "heading": "Engenharia de Sistemas do Silício à Web",
       "tagline": "Estudante de Ciência da Computação na PUCPR, técnico em sistemas, professor de robótica e líder acadêmico. Unindo hardware embarcado (C++, ESP32, FreeRTOS) com aplicações web full-stack e automação backend.",
       "story": [

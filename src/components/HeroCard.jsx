@@ -7,26 +7,23 @@ import { WaveDivider } from "./WaveDivider";
 export function HeroCard() {
   const { lang } = useApp();
   const copy = content.hero[lang];
-  const bgImage = heroImg;
 
   return (
     <section
       id="hero"
       className="relative min-h-[100dvh] flex flex-col justify-between pt-20 md:pt-24 pb-0 px-0 transition-colors duration-300 bg-[var(--bg-hero)] text-[var(--text-hero)] overflow-hidden"
     >
-      {bgImage && (
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <img
-            src={bgImage}
-            alt=""
-            className="w-full h-full object-cover object-center"
-          />
-          <div
-            className="absolute inset-0"
-            style={{ background: "var(--bg-hero-overlay)" }}
-          />
-        </div>
-      )}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <img
+          src={heroImg}
+          alt=""
+          className="w-full h-full object-cover object-center"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "var(--bg-hero-overlay)" }}
+        />
+      </div>
 
       <div className="relative z-10 flex-1 max-w-5xl mx-auto px-6 py-8 md:py-12 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-14 text-center md:text-left my-auto">
         <div className="relative shrink-0 group">
@@ -39,7 +36,7 @@ export function HeroCard() {
 
         <div className="max-w-2xl">
           <p className="text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest text-accent mb-2 font-heading">
-            {lang === "pt" ? "Olá, eu sou Pedro" : "Hello, I'm Pedro"}
+            {copy.greeting}
           </p>
 
           <h1
@@ -49,14 +46,14 @@ export function HeroCard() {
             {copy.role}
           </h1>
 
-          <p className="hero-bio mt-5 text-base sm:text-lg md:text-xl leading-relaxed text-white/90 font-normal">
+          <p className="mt-5 text-base sm:text-lg md:text-xl leading-relaxed text-white/90 font-normal">
             {copy.bio}
           </p>
         </div>
       </div>
 
       <div className="relative z-10 -mb-[1px] leading-none w-full shrink-0">
-        <WaveDivider color="var(--bg-projects)" bgColor="transparent" flip={true} />
+        <WaveDivider color="var(--bg-hero)" bgColor="transparent" flip={true} />
       </div>
     </section>
   );

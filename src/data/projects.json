@@ -3,7 +3,6 @@
     "title": "Academic Projects",
     "viewOnGithub": "View on GitHub",
     "openProject": "Open project",
-    "viewDetails": "View details",
     "projectDetails": "Project overview",
     "closeProject": "Close project",
     "highlights": "Highlights",
@@ -18,7 +17,6 @@
     "title": "Projetos Acadêmicos",
     "viewOnGithub": "Ver no GitHub",
     "openProject": "Abrir projeto",
-    "viewDetails": "Ver detalhes",
     "projectDetails": "Visão geral do projeto",
     "closeProject": "Fechar projeto",
     "highlights": "Destaques",
@@ -66,6 +64,46 @@
         "highlights": [
           "Firmware MicroPython para coleta embarcada",
           "Pensado para integração com dashboards e alertas"
+        ]
+      }
+    },
+    {
+      "id": "esp32-radar",
+      "tech": [
+        "ESP32",
+        "Bluetooth",
+        "Processing",
+        "Electronics"
+      ],
+      "links": {
+        "github": null,
+        "demo": null
+      },
+      "media": {
+        "cover": "radar.webp",
+        "alt": {
+          "en": "ESP32 radar sending live scans over Bluetooth to a Processing sketch",
+          "pt": "Radar ESP32 enviando varreduras ao vivo por Bluetooth para um sketch Processing"
+        },
+        "images": [],
+        "video": null
+      },
+      "en": {
+        "title": "ESP32 Bluetooth Radar",
+        "summary": "An ESP32 radar that streams scan data over Bluetooth to a Processing IDE app.",
+        "description": "An embedded radar built around the ESP32. Distance readings are sent over Bluetooth to a desktop app written in the Processing IDE, where the sweep is drawn in real time.",
+        "highlights": [
+          "ESP32 firmware for radar sensing and Bluetooth transmission",
+          "Processing IDE client that visualizes the live sweep"
+        ]
+      },
+      "pt": {
+        "title": "Radar ESP32 via Bluetooth",
+        "summary": "Radar com ESP32 que envia dados de varredura por Bluetooth para um app no Processing IDE.",
+        "description": "Radar embarcado em ESP32. As leituras de distância seguem por Bluetooth até um aplicativo desktop no Processing IDE, onde a varredura é desenhada em tempo real.",
+        "highlights": [
+          "Firmware ESP32 para sensoriamento e transmissão Bluetooth",
+          "Cliente no Processing IDE que visualiza a varredura ao vivo"
         ]
       }
     },

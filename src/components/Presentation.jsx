@@ -51,17 +51,17 @@ export function Presentation() {
   return (
     <section 
       id="presentation" 
-      className="py-16 md:py-24 px-4 transition-colors duration-300 bg-[var(--bg-projects)] text-[var(--text-projects)]"
+      className="py-16 md:py-24 px-4 transition-colors duration-300 bg-[var(--bg-hero)] text-[var(--text-hero)]"
     >
       <div className="max-w-5xl mx-auto space-y-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
          
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text-projects-title)] font-heading leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text-hero-title)] font-heading leading-tight">
             {copy.heading}
           </h2>
 
-          <p className="text-base sm:text-lg text-[var(--text-projects)] leading-relaxed">
+          <p className="text-base sm:text-lg text-[var(--text-hero)] leading-relaxed">
             {copy.tagline}
           </p>
         </div>
@@ -71,7 +71,7 @@ export function Presentation() {
           {/* Main Story Card */}
           <div className={`lg:col-span-7 p-6 sm:p-8 rounded-2xl border shadow-sm flex flex-col justify-center space-y-4 ${
             isDark 
-              ? "bg-slate-900/70 border-slate-800" 
+              ? "bg-[var(--bg-projects)] border-slate-700/80" 
               : "bg-[var(--bg-card)] border-[var(--border-card)]"
           }`}>
             <div className="flex items-center gap-2 text-accent mb-1">
@@ -80,7 +80,7 @@ export function Presentation() {
             </div>
 
             {copy.story.map((paragraph, idx) => (
-              <p key={idx} className="text-sm sm:text-base leading-relaxed text-[var(--text-projects)]">
+              <p key={idx} className="text-sm sm:text-base leading-relaxed text-[var(--text-hero)]">
                 {paragraph}
               </p>
             ))}
@@ -92,7 +92,7 @@ export function Presentation() {
               const HighlightIcon = HIGHLIGHT_ICONS[idx] || Code2;
               const cardClass = `p-4 sm:p-4.5 rounded-xl border flex items-center justify-between gap-4 ${
                 isDark
-                  ? "bg-slate-900/50 border-slate-800/80"
+                  ? "bg-[var(--bg-projects)] border-slate-700/80"
                   : "bg-[var(--bg-card)] border-[var(--border-card)]"
               }`;
               const labelBlock = (
@@ -102,7 +102,7 @@ export function Presentation() {
                   }`}>
                     {item.label}
                   </span>
-                  <h3 className="text-sm sm:text-base font-bold text-[var(--text-projects-title)] font-heading truncate">
+                  <h3 className="text-sm sm:text-base font-bold text-[var(--text-hero-title)] font-heading truncate">
                     {item.value}
                   </h3>
                 </div>
@@ -155,7 +155,7 @@ export function Presentation() {
                 key={idx}
                 className={`p-6 sm:p-7 rounded-2xl border shadow-sm flex flex-col ${
                   isDark
-                    ? "bg-slate-900/80 border-slate-800"
+                    ? "bg-[var(--bg-projects)] border-slate-700/80"
                     : "bg-[var(--bg-card)] border-[var(--border-card)]"
                 }`}
               >
@@ -163,11 +163,11 @@ export function Presentation() {
                   <Icon size={24} />
                 </div>
 
-                <h3 className="text-lg sm:text-xl font-bold text-[var(--text-projects-title)] font-heading mb-2">
+                <h3 className="text-lg sm:text-xl font-bold text-[var(--text-hero-title)] font-heading mb-2">
                   {pillar.title}
                 </h3>
 
-                <p className="text-sm leading-relaxed text-[var(--text-projects)] mt-auto">
+                <p className="text-sm leading-relaxed text-[var(--text-hero)] mt-auto">
                   {pillar.description}
                 </p>
               </div>

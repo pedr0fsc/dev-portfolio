@@ -26,8 +26,7 @@ function buildCommits(branches) {
         branchColor: branch.color,
         branchIndex,
         nodeIndex,
-        final: Boolean(node.final),
-        image: node.image || (branch.id === "main" ? profileImg : null),
+        image: branch.id === "main" ? profileImg : null,
       });
     });
   });
@@ -197,7 +196,7 @@ export function GitGraph() {
 
         <div
           className={`rounded-xl overflow-hidden border ${
-            isDark ? "border-slate-800 bg-slate-950/40" : "border-[var(--border-card)] bg-[var(--bg-card)]"
+            isDark ? "border-slate-700/80 bg-[var(--bg-projects)]" : "border-[var(--border-card)] bg-[var(--bg-card)]"
           }`}
         >
           <div className="overflow-x-auto overscroll-x-contain">

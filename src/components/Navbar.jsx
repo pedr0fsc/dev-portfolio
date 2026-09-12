@@ -100,7 +100,7 @@ export function Navbar() {
         </div>
 
         {/* Desktop Links, Socials & Config */}
-        <div className="hidden md:ml-auto md:flex items-center gap-6">
+        <div className="hidden md:ml-auto md:flex items-center gap-4 lg:gap-6">
           <a
             href="#presentation"
             className={`transition font-semibold text-sm hover-accent ${
@@ -108,6 +108,14 @@ export function Navbar() {
             }`}
           >
             {copy.about}
+          </a>
+          <a
+            href="#hall"
+            className={`transition font-semibold text-sm hover-accent ${
+              isDark || isOverHero ? "text-slate-200" : "text-[var(--text-navbar)]"
+            }`}
+          >
+            {copy.hall}
           </a>
           <a
             href="#journey"
@@ -229,7 +237,7 @@ export function Navbar() {
       {/* Mobile Menu Dropdown */}
       <div
         className={`md:hidden px-4 transition-all duration-300 ease-in-out overflow-hidden ${
-          isOpen ? "max-h-[28rem] opacity-100 pb-4" : "max-h-0 opacity-0 pointer-events-none pb-0"
+          isOpen ? "max-h-[32rem] opacity-100 pb-4" : "max-h-0 opacity-0 pointer-events-none pb-0"
         }`}
       >
         <div className={`p-4 rounded-2xl border shadow-xl backdrop-blur-md space-y-4 ${
@@ -239,6 +247,7 @@ export function Navbar() {
         }`}>
           <div className="space-y-3">
             <a href="#presentation" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-[var(--text-navbar)]"}`} onClick={() => setIsOpen(false)}>{copy.about}</a>
+            <a href="#hall" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-[var(--text-navbar)]"}`} onClick={() => setIsOpen(false)}>{copy.hall}</a>
             <a href="#journey" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-[var(--text-navbar)]"}`} onClick={() => setIsOpen(false)}>{copy.journey}</a>
             <a href="#projects" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-[var(--text-navbar)]"}`} onClick={() => setIsOpen(false)}>{copy.projects}</a>
             <a href="#contact" className={`block font-semibold hover-accent ${isDark ? "text-slate-300" : "text-[var(--text-navbar)]"}`} onClick={() => setIsOpen(false)}>{copy.contact}</a>

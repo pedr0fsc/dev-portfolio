@@ -213,7 +213,7 @@ export function ProjectGrid() {
         <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 text-[var(--text-projects-title)]">
           {sectionCopy.title}
         </h2>
-        <div className={`project-grid-wrapper ${showAllProjects ? "is-expanded" : "is-collapsed"}`}>
+        <div className="project-grid-wrapper">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projectsData.list.map((project, index) => {
               const localized = project[lang] || project.en;

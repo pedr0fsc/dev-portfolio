@@ -1,0 +1,92 @@
+{
+  "en": {
+    "title": "Hall of Favorites",
+    "tagline": "A gallery of what I am most proud of."
+  },
+  "pt": {
+    "title": "Galeria de Favoritos",
+    "tagline": "Uma galeria daquilo que mais me orgulho."
+  },
+  "branches": [
+    {
+      "id": "friends",
+      "image": "my_best_friends.webp",
+      "alt": {
+        "en": "My best friends our on beach vacation",
+        "pt": "Meus melhores amigos na nossa viagem para a praia"
+      },
+      "en": {
+        "title": "My best friends",
+        "text": "My best friends on our third annual travel to the beach."
+      },
+      "pt": {
+        "title": "Meus melhores amigos",
+        "text": "Meus melhores amigos na nossa terceira viagem anual pra praia."
+      }
+    },
+    {
+      "id": "team",
+      "image": "my_best_team.webp",
+      "alt": {
+        "en": "My team on our robotic competition",
+        "pt": "Minha equipe na nossa competição de robótica"
+      },
+      "en": {
+        "title": "My best team",
+        "text": "My robotics team at the national-level competition we participated in."
+      },
+      "pt": {
+        "title": "Minha melhor equipe",
+        "text": "Minha equipe de robótica na competição de etapa nacional que participamos."
+      }
+    },
+    {
+      "id": "construction",
+      "image": "my_best_construction.webp",
+      "alt": {
+        "en": "Large-scale eletronic robot",
+        "pt": "Robô eletrônico de grande dimensão"
+      },
+      "en": {
+        "title": "My best construction",
+        "text": "The robot gave me wings to build whatever I wanted and took me to compete in a national stage."
+      },
+      "pt": {
+        "title": "Minha melhor construção",
+        "text": "O robô me deu asas para construir o que quiser e me levou para competir em uma etapa nacional."
+      }
+    },
+    {
+      "id": "creation",
+      "image": "my_best_creation.webp",
+      "alt": {
+        "en": "The most complex origami that I made",
+        "pt": "Meu origami mais complexo que já fiz"
+      },
+      "en": {
+        "title": "My best creation",
+        "text": "My most beautiful and complex origami that I made."
+      },
+      "pt": {
+        "title": "Minha melhor criação",
+        "text": "Meu mais complexo e bonito origami que já fiz."
+      }
+    },
+    {
+      "id": "drawing",
+      "image": "my_best_drawing.webp",
+      "alt": {
+        "en": "Colored pencil drawing of my favorite Star Wars character.",
+        "pt": "Desenho a lápis de cor do meu personagem favorito de Star Wars"
+      },
+      "en": {
+        "title": "My best drawing",
+        "text": "The best drawing I colored as a child—of my favorite Star Wars character."
+      },
+      "pt": {
+        "title": "Meu melhor desenho",
+        "text": "Meu melhor desenho que pintei quando criança, do meu personagem favorito de Star Wars."
+      }
+    }
+  ]
+}

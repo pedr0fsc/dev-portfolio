@@ -81,7 +81,7 @@ export function AppProvider({ children }) {
   };
 
   return (
-    <AppContext.Provider value={{ theme, setTheme, toggleTheme, lang, setLang, changeLanguage }}>
+    <AppContext.Provider value={{ theme, toggleTheme, lang, changeLanguage }}>
       {children}
     </AppContext.Provider>
   );
