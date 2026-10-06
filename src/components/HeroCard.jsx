@@ -1,7 +1,7 @@
 import { useApp } from "../context/AppContext";
 import content from "../data/content.json";
 import heroImg from "../assets/hero.webp";
-import profileImg from "../assets/profile.webp";
+import profileImg from "../assets/profile-image.jpeg";
 import { WaveDivider } from "./WaveDivider";
 
 export function HeroCard() {
